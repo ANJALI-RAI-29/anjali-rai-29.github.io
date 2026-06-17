@@ -1,13 +1,51 @@
 /* =========================
    DAMRU
 ========================= */
+:root{
 
-body{
-background:
-radial-gradient(circle at top left,#1f3a5f 0%,transparent 35%),
-radial-gradient(circle at top right,#4f2c7d 0%,transparent 35%),
-radial-gradient(circle at bottom,#0d5c63 0%,transparent 40%),
-#08090d;
+/* BACKGROUNDS */
+
+--bg:#0b0b0f;
+--bg2:#111116;
+--card:#16161d;
+
+/* TEXT */
+
+--text:#ffffff;
+--muted:#b6b6c2;
+
+/* PRIMARY COLORS */
+
+--gold:#d6a84f;
+--gold2:#f3d37a;
+
+/* PREMIUM COLORS */
+
+--purple:#7c5cff;
+--blue:#4da6ff;
+--cyan:#67e8f9;
+--pink:#ff6ec7;
+--orange:#ffb347;
+
+/* EFFECTS */
+
+--border:rgba(255,255,255,.08);
+
+--shadow:
+0 20px 60px rgba(0,0,0,.45);
+
+--gold-glow:
+0 0 20px rgba(214,168,79,.5),
+0 0 50px rgba(214,168,79,.25);
+
+--glass:
+rgba(255,255,255,.05);
+
+--glass-border:
+rgba(255,255,255,.12);
+
+}
+
 
 color:var(--text);
 font-family:'Inter',sans-serif;
@@ -43,13 +81,11 @@ scroll-behavior:smooth;
 }
 
 body{
-background:var(--bg);
-color:var(--text);
-font-family:'Inter',sans-serif;
-overflow-x:hidden;
-transition:.4s;
-}
-
+background:
+radial-gradient(circle at top left,#1f3a5f 0%,transparent 35%),
+radial-gradient(circle at top right,#4f2c7d 0%,transparent 35%),
+radial-gradient(circle at bottom,#0d5c63 0%,transparent 40%),
+#08090d;
 /* LOADER */
 
 #loader{
@@ -983,5 +1019,159 @@ rgba(255,255,255,.05)
 );
 
 color:var(--gold);
+
+}
+   /* =========================
+   APPLE HERO UPGRADE
+========================= */
+
+body{
+
+background:
+radial-gradient(circle at top,
+rgba(124,92,255,.15),
+transparent 30%),
+
+radial-gradient(circle at right,
+rgba(77,166,255,.12),
+transparent 35%),
+
+var(--bg);
+
+}
+
+/* HERO TITLE */
+
+.hero-title{
+
+text-shadow:
+0 0 40px rgba(214,168,79,.4);
+
+animation:
+titleGlow 5s ease-in-out infinite;
+
+}
+
+@keyframes titleGlow{
+
+0%,100%{
+filter:brightness(1);
+}
+
+50%{
+filter:brightness(1.25);
+}
+
+}
+
+/* SUBTITLE */
+
+.hero-subtitle{
+
+margin-top:20px;
+
+font-size:1rem;
+
+letter-spacing:6px;
+
+text-transform:uppercase;
+
+color:var(--gold);
+
+opacity:.9;
+
+}
+
+/* APPLE GLASS PANEL */
+
+.hero-left{
+
+padding:40px;
+
+background:
+rgba(255,255,255,.03);
+
+backdrop-filter:
+blur(18px);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+border-radius:32px;
+
+}
+
+/* GOLDEN LIGHT */
+
+.hero-right::before{
+
+content:"";
+
+position:absolute;
+
+width:650px;
+height:650px;
+
+background:
+radial-gradient(
+circle,
+rgba(214,168,79,.25),
+transparent 70%
+);
+
+filter:blur(80px);
+
+animation:
+lightPulse 6s ease-in-out infinite;
+
+}
+
+@keyframes lightPulse{
+
+0%,100%{
+transform:scale(1);
+opacity:.8;
+}
+
+50%{
+transform:scale(1.15);
+opacity:1;
+}
+
+}
+
+/* DAMRU PREMIUM */
+
+.hero-damru{
+
+filter:
+drop-shadow(0 0 40px rgba(214,168,79,.5))
+drop-shadow(0 0 90px rgba(214,168,79,.2));
+
+transition:
+transform .3s ease;
+
+}
+
+/* GLASS BUTTONS */
+
+.primary-btn{
+
+box-shadow:
+0 10px 35px rgba(214,168,79,.35);
+
+}
+
+.primary-btn:hover{
+
+transform:
+translateY(-3px);
+
+}
+
+.secondary-btn:hover{
+
+background:
+rgba(255,255,255,.06);
 
 }
