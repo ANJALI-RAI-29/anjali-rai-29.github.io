@@ -291,3 +291,28 @@ console.log(
 console.log(
 "Rhythm of Innovation"
 );
+/* =========================
+   PREMIUM 3D DAMRU
+========================= */
+
+const heroDamru =
+document.querySelector(".hero-damru");
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+if(!heroDamru) return;
+
+const x =
+(e.clientX/window.innerWidth-0.5)*30;
+
+const y =
+(e.clientY/window.innerHeight-0.5)*30;
+
+heroDamru.style.transform = `
+rotateY(${x}deg)
+rotateX(${-y}deg)
+`;
+
+});
