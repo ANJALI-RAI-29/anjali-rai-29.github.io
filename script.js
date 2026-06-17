@@ -316,40 +316,36 @@ rotateX(${-y}deg)
 `;
 
 });
-
-/* =========================
+ /* =========================
    AUDIO & SOUND SYSTEM
 ========================= */
 
-// Audio file load karein (Sahi relative path ke saath)
-const bgAudio = new Audio("./damru.mp3");
-bgAudio.loop = true; // Loop on taaki music chalta rahe
-
+// HTML wale audio tag ko fetch karein
+const bgAudio = document.getElementById("damruAudio");
 const enterBtn = document.getElementById("enterBtn");
 const soundToggle = document.getElementById("soundToggle");
 
 let isMuted = true;
 
-// 1. Enter Experience Button par music start hoga
-if (enterBtn) {
+// 1. Enter Experience Button par click karte hi play hoga
+if (enterBtn && bgAudio) {
     enterBtn.addEventListener("click", () => {
         bgAudio.play()
             .then(() => {
                 isMuted = false;
-                if (soundToggle) soundToggle.innerText = "🔊"; // Icon change to unmuted
-                console.log("Audio playing successfully!");
+                if (soundToggle) soundToggle.innerText = "🔊";
+                console.log("Sound started successfully!");
             })
             .catch((error) => {
-                console.log("Audio play blocked by browser. Needs user interaction:", error);
+                console.log("Playback blocked or file not found:", error);
             });
     });
 }
 
-// 2. Mute/Unmute Toggle Button ki functionality
-if (soundToggle) {
+// 2. Mute/Unmute Toggle Button (Top Right Navbar)
+if (soundToggle && bgAudio) {
     soundToggle.addEventListener("click", () => {
         if (isMuted) {
-            // Unmute karein
             bgAudio.play()
                 .then(() => {
                     bgAudio.muted = false;
@@ -358,7 +354,6 @@ if (soundToggle) {
                 })
                 .catch(err => console.log(err));
         } else {
-            // Mute karein
             bgAudio.muted = true;
             isMuted = true;
             soundToggle.innerText = "🔇";
