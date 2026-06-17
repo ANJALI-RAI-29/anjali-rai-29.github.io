@@ -1,4 +1,17 @@
 /* =========================
+   LOADER FIX
+========================= */
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    if (loader) {
+        // Loader ko chhupane ke liye use fade-out karein ya display none karein
+        loader.style.opacity = "0";
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 500); // 0.5 second me loader hat jayega
+    }
+});
+/* =========================
    DAMRU WEBSITE
 ========================= */
 
