@@ -361,11 +361,18 @@ position:relative;
 }
 
 .hero-damru{
+width:520px;
+max-width:100%;
+
+animation:float 5s ease-in-out infinite;
+
+position:relative;
+z-index:3;
 
 filter:
-drop-shadow(0 0 20px rgba(255,180,50,.5))
-drop-shadow(0 0 60px rgba(255,180,50,.3))
-drop-shadow(0 0 120px rgba(255,180,50,.15));
+drop-shadow(0 0 30px rgba(255,210,100,.35))
+drop-shadow(0 0 80px rgba(255,170,0,.25));
+}
 
 cursor:pointer;
 
@@ -379,22 +386,23 @@ transform:scale(1.05);
 
 }
 .damru-glow{
-
 position:absolute;
 
-width:450px;
-height:450px;
+width:700px;
+height:700px;
 
-border-radius:50%;
-
-background:radial-gradient(
+background:
+radial-gradient(
 circle,
-rgba(214,168,79,.5),
-transparent
+rgba(255,200,80,.28),
+rgba(255,140,0,.12),
+transparent 70%
 );
 
-filter:blur(50px);
-
+filter:blur(60px);
+}
+.damru-glow{
+animation:glowPulse 5s ease-in-out infinite;
 }
 
 @keyframes float{
@@ -1173,5 +1181,18 @@ translateY(-3px);
 
 background:
 rgba(255,255,255,.06);
+
+}
+@keyframes glowPulse{
+
+0%,100%{
+transform:scale(1);
+opacity:.8;
+}
+
+50%{
+transform:scale(1.15);
+opacity:1;
+}
 
 }
