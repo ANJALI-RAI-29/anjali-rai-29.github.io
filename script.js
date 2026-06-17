@@ -62,39 +62,45 @@ themeBtn.addEventListener("click", () => {
 ========================= */
 
 const audio =
-    document.getElementById("damruAudio");
+document.getElementById("damruAudio");
 
 const soundBtn =
-    document.getElementById("soundToggle");
+document.getElementById("soundToggle");
 
-let soundEnabled = false;
+const damru =
+document.querySelector(".hero-damru");
 
-soundBtn.addEventListener("click", () => {
+let soundEnabled = true;
 
-    if(!audio) return;
+soundBtn.textContent = "🔊";
 
-    if(soundEnabled){
+soundBtn.addEventListener("click",()=>{
 
-        audio.pause();
+soundEnabled=!soundEnabled;
 
-        audio.currentTime = 0;
-
-        soundBtn.textContent = "🔇";
-
-        soundEnabled = false;
-
-    } else {
-
-        audio.play();
-
-        soundBtn.textContent = "🔊";
-
-        soundEnabled = true;
-
-    }
+soundBtn.textContent=
+soundEnabled ? "🔊":"🔇";
 
 });
 
+damru.addEventListener("click",()=>{
+
+damru.classList.add("beat");
+
+if(soundEnabled){
+
+audio.currentTime=0;
+audio.play();
+
+}
+
+setTimeout(()=>{
+
+damru.classList.remove("beat");
+
+},500);
+
+});
 /* =========================
    ENTER EXPERIENCE
 ========================= */
