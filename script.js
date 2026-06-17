@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
 });
 
 /* =========================
-   AUDIO & SOUND SYSTEM
+   AUDIO & SOUND SYSTEM (MOBILE OPTIMIZED)
 ========================= */
 const bgAudio = document.getElementById("damruAudio");
 const enterBtn = document.getElementById("enterBtn");
@@ -20,16 +20,29 @@ const soundToggle = document.getElementById("soundToggle");
 
 let isMuted = true;
 
+// Mobile ke liye audio ko pehle se ready rakhne ke liye
+if (bgAudio) {
+    bgAudio.load();
+}
+
 if (enterBtn && bgAudio) {
     enterBtn.addEventListener("click", () => {
+        // Audio volume set karein aur unmute karein
+        bgAudio.muted = false;
+        bgAudio.volume = 1.0;
+
         bgAudio.play()
             .then(() => {
                 isMuted = false;
                 if (soundToggle) soundToggle.innerText = "🔊";
                 console.log("Sound started successfully!");
+                
+                // Alert daal rahe hain check karne ke liye (Sab sahi chalne par ise hata sakte hain)
+                // alert("Sound is playing!"); 
             })
             .catch((error) => {
                 console.log("Playback blocked or file not found:", error);
+                alert("Audio play nahi ho paya: " + error.message);
             });
     });
 }
@@ -37,9 +50,9 @@ if (enterBtn && bgAudio) {
 if (soundToggle && bgAudio) {
     soundToggle.addEventListener("click", () => {
         if (isMuted) {
+            bgAudio.muted = false;
             bgAudio.play()
                 .then(() => {
-                    bgAudio.muted = false;
                     isMuted = false;
                     soundToggle.innerText = "🔊";
                 })
@@ -51,6 +64,7 @@ if (soundToggle && bgAudio) {
         }
     });
 }
+
 
 /* =========================
    CONTACT FORM
