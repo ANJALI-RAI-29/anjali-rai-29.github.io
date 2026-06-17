@@ -316,3 +316,52 @@ rotateX(${-y}deg)
 `;
 
 });
+
+/* =========================
+   AUDIO & SOUND SYSTEM
+========================= */
+
+// Audio file load karein (Sahi relative path ke saath)
+const bgAudio = new Audio("./damru.mp3");
+bgAudio.loop = true; // Loop on taaki music chalta rahe
+
+const enterBtn = document.getElementById("enterBtn");
+const soundToggle = document.getElementById("soundToggle");
+
+let isMuted = true;
+
+// 1. Enter Experience Button par music start hoga
+if (enterBtn) {
+    enterBtn.addEventListener("click", () => {
+        bgAudio.play()
+            .then(() => {
+                isMuted = false;
+                if (soundToggle) soundToggle.innerText = "🔊"; // Icon change to unmuted
+                console.log("Audio playing successfully!");
+            })
+            .catch((error) => {
+                console.log("Audio play blocked by browser. Needs user interaction:", error);
+            });
+    });
+}
+
+// 2. Mute/Unmute Toggle Button ki functionality
+if (soundToggle) {
+    soundToggle.addEventListener("click", () => {
+        if (isMuted) {
+            // Unmute karein
+            bgAudio.play()
+                .then(() => {
+                    bgAudio.muted = false;
+                    isMuted = false;
+                    soundToggle.innerText = "🔊";
+                })
+                .catch(err => console.log(err));
+        } else {
+            // Mute karein
+            bgAudio.muted = true;
+            isMuted = true;
+            soundToggle.innerText = "🔇";
+        }
+    });
+}
