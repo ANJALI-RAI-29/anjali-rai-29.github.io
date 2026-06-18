@@ -306,20 +306,21 @@
 </footer>
 
 <script src="script.js?v=200"></script>
-
-    <div class="agent-terminal-widget">
+<!-- DAMRU CHAT BOT TERMINAL -->
+<div class="agent-terminal-widget">
     <div class="terminal-header">
-        <span class="terminal-title">⚡ DAMRU-AGI_ENGINE v1.0 [active]</span>
-        <div class="terminal-controls">
-            <span class="dot-red"></span>
-            <span class="dot-yellow"></span>
-            <span class="dot-green"></span>
-        </div>
+        <span class="pulse-dot"></span>
+        <span class="terminal-title">DAMRU_CHAT_BOT V1.0 [ONLINE]</span>
     </div>
-    <div class="terminal-body" id="agentTerminalLogs">
-        <div class="log-line text-cyan">[System] Booting cognitive architecture...</div>
+    <div class="terminal-body" id="chatBody">
+        <p class="bot-msg">[Bot]: Hello! Ask me about my skills, projects, or education.</p>
+    </div>
+    <div class="terminal-input-area">
+        <input type="text" id="chatInput" placeholder="Type a command (e.g., skills, projects)..." />
+        <button id="sendChatBtn">Send</button>
     </div>
 </div>
+
 
 </body>
 </html>
