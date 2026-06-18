@@ -185,13 +185,23 @@ nav a:hover {
     font-family: 'Noto Sans Devanagari', sans-serif;
     font-weight: 800;
     line-height: 1;
-    background: linear-gradient(90deg, #fff, var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text; /* Standard support fallback */
-    background-color: transparent !important; /* Grey patch hatane ke liye */
+    
+    /* Dual support gradient background */
+    background: linear-gradient(90deg, #ffffff, var(--gold)) !important;
+    
+    /* Explicitly text-clipping fixes for chrome cache bugs */
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    
+    /* Fallbacks taaki peeche koi background surface generate na ho */
+    background-color: transparent !important;
+    box-shadow: none !important;
     text-shadow: 0 0 40px rgba(214,168,79,.4);
     animation: titleGlow 5s ease-in-out infinite;
+    
+    /* Element level rendering acceleration */
+    display: inline-block;
 }
 
 .hero-subtitle {
