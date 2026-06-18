@@ -204,6 +204,11 @@ nav a:hover {
     display: inline-block;
 }
 
+.hero-title-svg {
+    filter: drop-shadow(0 0 20px rgba(214,168,79,0.3));
+    animation: titleGlow 5s ease-in-out infinite;
+}
+
 .hero-subtitle {
     margin-top: 20px;
     font-size: 1rem;
