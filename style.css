@@ -1200,3 +1200,43 @@ html, body {
     cursor: pointer !important;
     pointer-events: auto !important; /* Standard browser forcing click execution */
 }
+/* ==========================================================================
+   DYNAMIC COSMIC THEME SWITCHER CORES
+   ========================================================================== */
+
+/* Light Mode Variables override framework */
+body.light-mode {
+    --background: #f4f5f7 !important;       /* Clean light grey/white space */
+    --text: #0f172a !important;             /* Deep slate dark text */
+    --text-muted: #64748b !important;       /* Muted grey reading text */
+    --card: rgba(0, 0, 0, 0.03) !important; /* Soft minimal outline cards */
+    --border: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Smooth transit system animation when colors invert */
+body {
+    transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                color 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Light mode overrides for transparent blur widgets */
+body.light-mode .timeline-content,
+body.light-mode .project-card,
+body.light-mode .agent-terminal-widget {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    color: #0f172a !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+}
+
+/* Dark color forcing adjustments inside light containers */
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3, 
+body.light-mode p,
+body.light-mode span:not(.status-text):not(.terminal-title) {
+    color: #0f172a !important;
+}
+body.light-mode .tech-marquee-content span {
+    color: rgba(0, 0, 0, 0.08) !important; /* Soft watermark scrolling */
+}
