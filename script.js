@@ -1,44 +1,16 @@
 /* =========================
-   AUDIO & SOUND SYSTEM
+   ENTER EXPERIENCE ACTION
 ========================= */
-const bgAudio = document.getElementById("damruAudio");
 const enterBtn = document.getElementById("enterBtn");
-const soundToggle = document.getElementById("soundToggle");
 
-// Mobile aur browser ke liye audio preload aur unmuting fix
-if (bgAudio) {
-    bgAudio.muted = true; // Shuruat me mute rakhein taaki browser block na kare
-    bgAudio.load();
-}
-
-if (enterBtn && bgAudio) {
+if (enterBtn) {
     enterBtn.addEventListener("click", () => {
-        console.log("Enter Experience Clicked!");
-        
-        // Browser restrictions bypass karne ke liye unmute aur play ka force call
-        bgAudio.muted = false;
-        bgAudio.volume = 1.0;
-        
-        bgAudio.play()
-            .then(() => {
-                console.log("Music started playing!");
-                if (soundToggle) soundToggle.innerText = "🔊";
-            })
-            .catch((err) => {
-                console.log("Audio play blocked: ", err);
+        const aboutSection = document.getElementById("about");
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ 
+                behavior: "smooth", 
+                block: "start" 
             });
-    });
-}
-
-if (soundToggle && bgAudio) {
-    soundToggle.addEventListener("click", () => {
-        if (bgAudio.muted || bgAudio.paused) {
-            bgAudio.muted = false;
-            bgAudio.play();
-            soundToggle.innerText = "🔊";
-        } else {
-            bgAudio.muted = true;
-            soundToggle.innerText = "🔇";
         }
     });
 }
@@ -61,7 +33,7 @@ if (form) {
 }
 
 /* =========================
-   SCROLL REVEAL
+   SCROLL REVEAL (ANIMATION)
 ========================= */
 const revealElements = document.querySelectorAll(
     ".about-card, .focus-card, .project-card, .timeline-item, .github-card"
@@ -110,7 +82,7 @@ window.addEventListener("scroll", () => {
 });
 
 /* =========================
-   REVEAL CLASSES
+   REVEAL CLASSES CSS
 ========================= */
 const style = document.createElement("style");
 style.innerHTML = `
