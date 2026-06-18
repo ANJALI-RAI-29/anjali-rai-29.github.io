@@ -955,3 +955,56 @@ body::before {
     box-shadow: 0 30px 70px rgba(214, 168, 79, 0.1) !important;
     transform: translateY(-8px) scale(1.01) !important;
 }
+/* ==========================================================================
+   AI BADGES & EXCLUSIVE ELEMENT STYLINGS
+   ========================================================================== */
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.badge-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Dynamic color variants based on variables */
+.badge-pill.purple { color: var(--purple); border-color: rgba(124,92,255,0.3); }
+.badge-pill.blue { color: var(--blue); border-color: rgba(77,166,255,0.3); }
+.badge-pill.cyan { color: var(--cyan); border-color: rgba(103,232,249,0.3); }
+.badge-pill.pink { color: var(--pink); border-color: rgba(255,110,199,0.3); }
+.badge-pill.orange { color: var(--orange); border-color: rgba(255,179,71,0.3); }
+.badge-pill.gold { color: var(--gold); border-color: rgba(214,168,79,0.3); }
+
+/* Card level GitHub Overlay button link */
+.card-github-link {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    font-size: 1.3rem;
+    color: var(--muted);
+    transition: 0.3s ease;
+}
+
+.project-card:hover .card-github-link {
+    color: var(--gold);
+    transform: scale(1.1);
+}
+
+/* Premium Timeline Node Pulse System */
+.timeline-dot {
+    animation: nodePulse 2s infinite alternate;
+}
+
+@keyframes nodePulse {
+    0% { box-shadow: 0 0 10px var(--gold); }
+    100% { box-shadow: 0 0 25px var(--gold), 0 0 35px var(--gold); }
+}
