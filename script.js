@@ -192,13 +192,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Bot Logic Routing
         let reply = "[Bot]: System rules not matched. Try typing 'skills', 'projects', or 'contact'.";
         
-        if (userText.includes("skills") || userText.includes("tech")) {
+                if (userText.includes("skill") || userText.includes("tech") || userText.includes("know")) {
             reply = "[Bot]: Core Competencies: C programming, HTML, CSS, JavaScript. Currently building systems in Cloud, AI, and Machine Learning!";
-        } else if (userText.includes("project") || userText.includes("work")) {
+        } else if (userText.includes("project") || userText.includes("work") || userText.includes("built")) {
             reply = "[Bot]: Featured Projects: 1. Smart Gym (Mechanical to Electrical Energy Conversion) 2. DAMRU Engine Web Infrastructure.";
-        } else if (userText.includes("contact") || userText.includes("email")) {
+        } else if (userText.includes("contact") || userText.includes("email") || userText.includes("social")) {
             reply = "[Bot]: Routing Core... You can navigate to the Contact Section below or connect directly via GitHub/LinkedIn!";
-        } else if (userText.includes("hello") || userText.includes("hi")) {
+        } else if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey")) {
             reply = "[Bot]: Hello human! Welcome to the DAMRU Core Interface. How can I assist your extraction pipeline today?";
         }
 
