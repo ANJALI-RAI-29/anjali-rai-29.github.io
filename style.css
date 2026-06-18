@@ -1201,25 +1201,40 @@ html, body {
     pointer-events: auto !important; /* Standard browser forcing click execution */
 }
 /* ==========================================================================
-   DYNAMIC COSMIC THEME SWITCHER CORES (V2 - FULL INVERSION FIXED)
+   THE ABSOLUTE LIGHT/DARK FIELD COMBAT ENGINE (FINAL FIX V3)
    ========================================================================== */
 
-/* 1. Global Light Mode Variable Core Overrides */
+/* 1. Global Viewport Framework Setup */
 body.light-mode {
-    background: #f8fafc !important;         /* Forces body background to pristine light slate */
-    --background: #f8fafc !important;       
-    --text: #0f172a !important;             /* Pure deep slate dark text */
-    --text-muted: #475569 !important;       /* Highly visible muted charcoal text */
-    --card: rgba(15, 23, 42, 0.04) !important; 
-    --border: rgba(15, 23, 42, 0.1) !important;
+    background: #f8fafc !important;
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    
+    --background: #f8fafc !important;
+    --text: #0f172a !important;
+    --text-muted: #475569 !important;
+    --card: rgba(15, 23, 42, 0.03) !important;
+    --border: rgba(15, 23, 42, 0.08) !important;
 }
 
-/* Smooth color morphing transition across elements */
-body {
-    transition: background-color 0.3s ease, color 0.3s ease !important;
+/* 2. Forcing Main HTML Section Panels to turn clean white/light grey */
+body.light-mode section,
+body.light-mode .section,
+body.light-mode .dark-section,
+body.light-mode #hero,
+body.light-mode .hero,
+body.light-mode #journey,
+body.light-mode #about,
+body.light-mode #focus,
+body.light-mode #projects,
+body.light-mode #contact,
+body.light-mode footer {
+    background: #f8fafc !important;
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
 }
 
-/* 2. Strict Bruteforce Text Visibility Rules for Light Mode */
+/* 3. Universal Recursive Font Color Force Rule */
 body.light-mode,
 body.light-mode *,
 body.light-mode h1,
@@ -1230,38 +1245,43 @@ body.light-mode p,
 body.light-mode span,
 body.light-mode li,
 body.light-mode div,
-body.light-mode a:not(.primary-btn):not(.secondary-btn) {
-    color: #0f172a !important; /* Shuddh dark slate colors for everything */
+body.light-mode label,
+body.light-mode a:not(.primary-btn):not(.secondary-btn):not(.btn) {
+    color: #0f172a !important; /* Pure crisp high-contrast dark charcoal color */
 }
 
-/* Muted text optimization for reading contrast */
+/* Reading gray adjustment for descriptions */
+body.light-mode p,
 body.light-mode .text-muted,
-body.light-mode .section-header p,
-body.light-mode p:not(h3) {
-    color: #475569 !important; 
+body.light-mode .section-header p {
+    color: #334155 !important; 
 }
 
-/* 3. Glassmorphic Cards Light Mode Adaptability */
+/* 4. Glassmorphic Micro-cards Inversion Rules */
 body.light-mode .project-card,
 body.light-mode .timeline-content,
 body.light-mode .agent-terminal-widget,
 body.light-mode .focus-card,
 body.light-mode .skill-category,
 body.light-mode .about-card,
-body.light-mode .timeline-item {
-    background: rgba(15, 23, 42, 0.03) !important;
-    backdrop-filter: blur(25px) !important;
-    -webkit-backdrop-filter: blur(25px) !important;
+body.light-mode .github-card {
+    background: #ffffff !important; /* Pure solid white base for pristine floating cards */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     border: 1px solid rgba(15, 23, 42, 0.08) !important;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04) !important;
 }
 
-/* 4. Marquee Text Light Mode Contrast Fix */
-body.light-mode .tech-marquee-content span {
-    color: rgba(15, 23, 42, 0.12) !important; 
+/* Specific terminal simulation sub-text override */
+body.light-mode .agent-terminal-widget *,
+body.light-mode .agent-terminal-widget span,
+body.light-mode .agent-terminal-widget div {
+    color: #0f172a !important;
+    font-weight: 500 !important;
 }
 
-/* DAMRU-AGI_ENGINE title specific override */
-body.light-mode .terminal-header span {
-    color: #0f172a !important;
+/* 5. Infinite Tech Marquee Visibility Tuning */
+body.light-mode .tech-marquee-content span {
+    color: rgba(15, 23, 42, 0.08) !important; /* Elegant subtle watermark effect */
 }
+
