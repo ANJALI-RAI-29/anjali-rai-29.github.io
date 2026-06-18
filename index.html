@@ -211,16 +211,25 @@
 </div>
 
     
-<section id="journey" class="section dark-section">
-    <div class="container">
+<!-- =========================
+     JOURNEY TIMELINE SECTION (FIXED V6)
+========================= -->
+<section id="journey" class="section dark-section" style="overflow: visible !important;">
+    <div class="container" style="overflow: visible !important;">
         <div class="section-header">
             <span>MY ROADMAP</span>
             <h2>The Path Ahead</h2>
             <p>A systematic progression of core competencies, active engineering, and production pipelines.</p>
         </div>
 
-        <div class="timeline">
-            <div class="timeline-item">
+        <!-- Timeline container with explicit HTML line vector inside -->
+        <div class="timeline" style="position: relative; padding-left: 60px; margin: 50px 0; overflow: visible !important;">
+            
+            <!-- THE HARD-CODED GLOWING LINE OBJECT -->
+            <div class="timeline-hard-line"></div>
+
+            <!-- Milestone 1 -->
+            <div class="timeline-item" style="position: relative; margin-bottom: 40px; overflow: visible !important;">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <h3 style="color: var(--gold); margin-bottom: 8px;">Foundation</h3>
@@ -228,7 +237,8 @@
                 </div>
             </div>
 
-            <div class="timeline-item">
+            <!-- Milestone 2 -->
+            <div class="timeline-item" style="position: relative; margin-bottom: 40px; overflow: visible !important;">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <h3 style="color: var(--purple); margin-bottom: 8px;">Exploration</h3>
@@ -236,7 +246,8 @@
                 </div>
             </div>
 
-            <div class="timeline-item">
+            <!-- Milestone 3 -->
+            <div class="timeline-item" style="position: relative; margin-bottom: 40px; overflow: visible !important;">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <h3 style="color: var(--cyan); margin-bottom: 8px;">Creation</h3>
