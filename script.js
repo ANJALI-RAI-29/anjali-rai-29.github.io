@@ -100,17 +100,18 @@ magneticButtons.forEach(btn => {
         btn.style.transform = "translate(0px, 0px) scale(1)";
     });
 });
-// 5. Autonomous AI Agent Runtime Terminal Execution
+// 5. Damru AGI Engine Telemetry Loop Script
 document.addEventListener("DOMContentLoaded", () => {
     const logsContainer = document.getElementById("agentTerminalLogs");
     if (!logsContainer) return;
 
     const logTemplates = [
-        { text: "[Thought] Scanning cloud compute layers for agentic scaling...", class: "text-purple" },
-        { text: "[Action] Syncing cognitive maps with active Vector DB matrix.", class: "text-cyan" },
-        { text: "[Status] Parsing deep model weight distributions...", class: "text-gold" },
-        { text: "[Success] Execution telemetry stable. Latency check: 12ms.", class: "text-green" },
-        { text: "[Agent] Standby mode complete. Tuning automation pipelines.", class: "text-cyan" }
+        { text: "[Thought] Analyzing repo structure for auto-optimization...", class: "text-purple" },
+        { text: "[Action] Querying local Vector DB arrays for semantic context.", class: "text-cyan" },
+        { text: "[LLM] Running inference on prompt weight distribution...", class: "text-gold" },
+        { text: "[Cloud] Scaling microservices node grid cluster. Latency: 9ms.", class: "text-green" },
+        { text: "[Agent] Loop objective resolved. Syncing localized data locks.", class: "text-cyan" },
+        { text: "[Telemetry] Core monitoring active. Listening for user actions...", class: "text-purple" }
     ];
 
     let currentLogIdx = 0;
@@ -122,11 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         logsContainer.appendChild(newLineNode);
         
-        // Remove tracking height limit logs
-        if (logsContainer.children.length > 5) {
+        if (logsContainer.children.length > 4) {
             logsContainer.removeChild(logsContainer.children[0]);
         }
         
         currentLogIdx = (currentLogIdx + 1) % logTemplates.length;
-    }, 3200);
+    }, 3500);
 });
