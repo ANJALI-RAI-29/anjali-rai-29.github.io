@@ -538,49 +538,82 @@ nav a:hover {
     color: var(--gold);
 }
 /* ==========================================================================
-   THE ULTIMATE TIMELINE FIX: BORDER-LEFT RECONSTRUCTION
+    TIMELINE ARCHITECTURE
    ========================================================================== */
 
+#journey, .section.dark-section {
+    position: relative !important;
+    overflow: visible !important; 
+}
+
+/* 1. Main Parent Rail Tracker */
 #journey .timeline,
 .timeline {
     position: relative !important;
-    padding-left: 50px !important; /* Content aur line ke beech ka space */
-    margin: 50px 0 !important;
+    padding-left: 0px !important; /* Resetting plain offsets */
+    margin: 60px auto !important;
+    max-width: 900px !important;   /* Standard readable grid width */
     display: block !important;
     overflow: visible !important;
-
     
-    border-left: 3px solid #d6a84f !important; /* Strict solid gold rail */
-    box-shadow: -5px 0 15px rgba(214, 168, 79, 0.4); /* Subtle ambient left glow */
+    
+    border-left: 2px solid rgba(214, 168, 79, 0.4) !important; 
 }
 
-
-.timeline-hard-line {
-    display: none !important;
+/* 2. Symmetrical Card Row Wrapper */
+#journey .timeline-item,
+.timeline-item {
+    position: relative !important;
+    margin-bottom: 45px !important;
+    padding-left: 45px !important; /* Forcing text cards 45px away from the left line */
+    display: block !important;
+    width: 100% !important;
+    overflow: visible !important;
 }
 
-
+/* 3. Perfect Pixel Alignment Nodes (Dots) */
 #journey .timeline-dot,
 .timeline-dot {
     position: absolute !important;
-    left: -9px !important; /* Perfect pixel coordinate shift to overlap the border line */
-    top: 30px !important;  
+    /* Mathematics: -(padding-left + 1/2 of width + border thickness) to center-lock */
+    left: -8px !important; 
+    top: 28px !important;  /* Centers exactly on the heading level line */
     width: 14px !important;
     height: 14px !important;
     border-radius: 50% !important;
     background: #0d0d0d !important;
     border: 3px solid #d6a84f !important;
-    z-index: 9999 !important; /* Sabse upar top overlay ke liye */
-    box-shadow: 0 0 10px #d6a84f !important;
+    z-index: 9999 !important;
+    box-shadow: 0 0 10px rgba(214, 168, 79, 0.6) !important;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     display: block !important;
 }
 
-#journey .timeline-item {
-    position: relative !important;
-    margin-bottom: 35px !important;
+/* Neon Interaction Feedback on Card Hover */
+#journey .timeline-item:hover .timeline-dot {
+    background: #d6a84f !important;
+    box-shadow: 0 0 20px #d6a84f, 0 0 35px #d6a84f !important;
+    transform: translateY(-50%) scale(1.25) !important;
+}
+
+/* 4. Elegant Glassmorphic Content Panels */
+#journey .timeline-content,
+.timeline-content {
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 25px 30px !important;
+    border-radius: 16px !important;
+    transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
     display: block !important;
-    width: 100% !important;
-    overflow: visible !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+#journey .timeline-content:hover {
+    transform: translateX(8px) !important; /* Gentle interactive card push */
+    border-color: rgba(124, 92, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
 }
 /* ==========================================================================
    GITHUB PANEL
