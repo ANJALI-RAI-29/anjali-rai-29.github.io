@@ -1,37 +1,38 @@
 /* =========================
-   LOADER SYSTEM
-========================= */
-window.addEventListener("load", () => {
-    const loader = document.getElementById("loader");
-    if (loader) {
-        loader.style.opacity = "0";
-        setTimeout(() => {
-            loader.style.display = "none";
-        }, 500);
-    }
-});
-
-/* =========================
    AUDIO & SOUND SYSTEM
 ========================= */
 const bgAudio = document.getElementById("damruAudio");
 const enterBtn = document.getElementById("enterBtn");
 const soundToggle = document.getElementById("soundToggle");
 
+// Mobile aur browser ke liye audio preload aur unmuting fix
+if (bgAudio) {
+    bgAudio.muted = true; // Shuruat me mute rakhein taaki browser block na kare
+    bgAudio.load();
+}
+
 if (enterBtn && bgAudio) {
     enterBtn.addEventListener("click", () => {
+        console.log("Enter Experience Clicked!");
+        
+        // Browser restrictions bypass karne ke liye unmute aur play ka force call
         bgAudio.muted = false;
         bgAudio.volume = 1.0;
-        bgAudio.play();
-        if (soundToggle) {
-            soundToggle.innerText = "🔊";
-        }
+        
+        bgAudio.play()
+            .then(() => {
+                console.log("Music started playing!");
+                if (soundToggle) soundToggle.innerText = "🔊";
+            })
+            .catch((err) => {
+                console.log("Audio play blocked: ", err);
+            });
     });
 }
 
 if (soundToggle && bgAudio) {
     soundToggle.addEventListener("click", () => {
-        if (bgAudio.muted) {
+        if (bgAudio.muted || bgAudio.paused) {
             bgAudio.muted = false;
             bgAudio.play();
             soundToggle.innerText = "🔊";
