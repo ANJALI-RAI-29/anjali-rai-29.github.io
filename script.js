@@ -83,3 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
         pointerGlow.style.top = e.clientY + "px";
     });
 });
+// 4. Apple Magnetic Buttons Integration
+const magneticButtons = document.querySelectorAll(".primary-btn, .secondary-btn, .icon-btn");
+
+magneticButtons.forEach(btn => {
+    btn.addEventListener("mousemove", (e) => {
+        const bound = btn.getBoundingClientRect();
+        const mouseX = e.clientX - bound.left - bound.width / 2;
+        const mouseY = e.clientY - bound.top - bound.height / 2;
+        
+        // Halka realistic elastic pull index effect
+        btn.style.transform = `translate(${mouseX * 0.3}px, ${mouseY * 0.3}px) scale(1.02)`;
+    });
+    
+    btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "translate(0px, 0px) scale(1)";
+    });
+});
