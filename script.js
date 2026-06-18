@@ -173,3 +173,44 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("theme", theme);
     });
 });
+// DAMRU CHAT BOT INTELLIGENCE ENGINE
+document.addEventListener("DOMContentLoaded", () => {
+    const chatInput = document.getElementById("chatInput");
+    const sendChatBtn = document.getElementById("sendChatBtn");
+    const chatBody = document.getElementById("chatBody");
+
+    if (!chatInput || !sendChatBtn || !chatBody) return;
+
+    const triggerBotResponse = () => {
+        const userText = chatInput.value.trim().toLowerCase();
+        if (userText === "") return;
+
+        // User ka message display karna
+        chatBody.innerHTML += `<p style="color: #94a3b8;">[You]: ${chatInput.value}</p>`;
+        chatInput.value = "";
+
+        // Bot Logic Routing
+        let reply = "[Bot]: System rules not matched. Try typing 'skills', 'projects', or 'contact'.";
+        
+        if (userText.includes("skills") || userText.includes("tech")) {
+            reply = "[Bot]: Core Competencies: C programming, HTML, CSS, JavaScript. Currently building systems in Cloud, AI, and Machine Learning!";
+        } else if (userText.includes("project") || userText.includes("work")) {
+            reply = "[Bot]: Featured Projects: 1. Smart Gym (Mechanical to Electrical Energy Conversion) 2. DAMRU Engine Web Infrastructure.";
+        } else if (userText.includes("contact") || userText.includes("email")) {
+            reply = "[Bot]: Routing Core... You can navigate to the Contact Section below or connect directly via GitHub/LinkedIn!";
+        } else if (userText.includes("hello") || userText.includes("hi")) {
+            reply = "[Bot]: Hello human! Welcome to the DAMRU Core Interface. How can I assist your extraction pipeline today?";
+        }
+
+        // Bot ka reply generate karna thode delay ke sath
+        setTimeout(() => {
+            chatBody.innerHTML += `<p class="bot-msg" style="color: #d6a84f;">${reply}</p>`;
+            chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll down
+        }, 400);
+    };
+
+    sendChatBtn.addEventListener("click", triggerBotResponse);
+    chatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") triggerBotResponse();
+    });
+});
