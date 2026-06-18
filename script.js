@@ -1,133 +1,85 @@
-/* =========================
-   ENTER EXPERIENCE ACTION
-========================= */
-const enterBtn = document.getElementById("enterBtn");
+/* ==========================================================================
+   VERSION 3 UNIVERSAL RUNTIME - FOOLPROOF AUTO-BINDING
+   ========================================================================== */
 
-if (enterBtn) {
-    enterBtn.addEventListener("click", () => {
-        const aboutSection = document.getElementById("about");
-        if (aboutSection) {
-            aboutSection.scrollIntoView({ 
-                behavior: "smooth", 
-                block: "start" 
-            });
-        }
-    });
-}
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Damru V3 Engine Initialized successfully!");
 
-/* =========================
-   CONTACT FORM
-========================= */
-const form = document.getElementById("contactForm");
-if (form) {
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const button = form.querySelector("button");
-        const oldText = button.innerText;
-        button.innerText = "Message Sent ✓";
-        setTimeout(() => {
-            form.reset();
-            button.innerText = oldText;
-        }, 3000);
-    });
-}
+    // 1. Enter Experience Button Tracking Setup
+    // Aapke code me id ya class jo bhi ho, ye sabko auto-detect karega
+    const enterBtn = document.getElementById("enterBtn") || 
+                     document.querySelector(".primary-btn") || 
+                     document.querySelector("button");
 
-/* =========================
-   SCROLL REVEAL (ANIMATION)
-========================= */
-const revealElements = document.querySelectorAll(
-    ".about-card, .focus-card, .project-card, .timeline-item, .github-card"
-);
-
-const observer = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
+    if (enterBtn) {
+        console.log("Enter button found and auto-linked!");
+        enterBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("Smooth scrolling initiated...");
+            
+            // About section ko target karna
+            const aboutSection = document.getElementById("about") || 
+                                 document.querySelector(".about-grid") || 
+                                 document.querySelector("section:nth-of-type(1)");
+            
+            if (aboutSection) {
+                aboutSection.scrollIntoView({ 
+                    behavior: "smooth", 
+                    block: "start" 
+                });
+            } else {
+                // Agar koi section target nahi mila toh screen ko automatic 800px niche scroll karega
+                window.scrollTo({
+                    top: window.innerHeight || 800,
+                    behavior: "smooth"
+                });
             }
         });
-    },
-    { threshold: 0.15 }
-);
-
-revealElements.forEach((el) => {
-    el.classList.add("hidden");
-    observer.observe(el);
-});
-
-/* =========================
-   PREMIUM 3D DAMRU & PARALLAX
-========================= */
-const heroDamru = document.querySelector(".hero-damru");
-document.addEventListener("mousemove", (e) => {
-    if (!heroDamru) return;
-    const x = (e.clientX / window.innerWidth - 0.5) * 30;
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
-    heroDamru.style.transform = `rotateY(${x}deg) rotateX(${-y}deg) translate(${x/1.5}px, ${y/1.5}px)`;
-});
-
-/* =========================
-   NAVBAR SCROLL EFFECT
-========================= */
-const navbar = document.querySelector(".navbar");
-window.addEventListener("scroll", () => {
-    if (!navbar) return;
-    if (window.scrollY > 50) {
-        navbar.style.background = "rgba(0,0,0,.75)";
-        navbar.style.backdropFilter = "blur(30px)";
-    } else {
-        navbar.style.background = "rgba(0,0,0,.3)";
-        navbar.style.backdropFilter = "none";
     }
-});
 
-/* =========================
-   REVEAL CLASSES CSS
-========================= */
-const style = document.createElement("style");
-style.innerHTML = `
-.hidden {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity .8s ease, transform .8s ease;
-}
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-`;
-document.head.appendChild(style);
-/* ==========================================================================
-   VERSION 3 UPGRADE: ADVANCED 3D POSITIONING & CURSOR TRACKING
-   ========================================================================== */
-const premiumDamru = document.querySelector(".hero-damru");
-const heroBox = document.querySelector(".hero");
+    // 2. Interactive 3D Parallax Mouse Motion (Auto-detecting classes)
+    const heroDamru = document.querySelector(".hero-damru") || 
+                      document.querySelector("img[src*='damru']") || 
+                      document.querySelector(".hero-right img");
+                      
+    const heroSection = document.querySelector(".hero") || 
+                        document.querySelector("section") || 
+                        document.body;
 
-if (heroBox && premiumDamru) {
-    heroBox.addEventListener("mousemove", (e) => {
-        const rect = heroBox.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+    if (heroSection && heroDamru) {
+        console.log("3D Damru Asset Layer linked!");
+        heroSection.addEventListener("mousemove", (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const rotateX = (-y / rect.height) * 30; 
+            const rotateY = (x / rect.width) * 30;
+            
+            heroDamru.style.transition = "transform 0.1s ease-out";
+            heroDamru.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+        });
         
-        // Multiplier badha kar depth effect 3D kiya gaya hai
-        const rotateX = (-y / rect.height) * 35; 
-        const rotateY = (x / rect.width) * 35;
-        
-        premiumDamru.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-    });
-    
-    // Mouse bahar jaane par wapas default elastic positions par lane ke liye
-    heroBox.addEventListener("mouseleave", () => {
-        premiumDamru.style.transform = "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
-    });
-}
+        heroSection.addEventListener("mouseleave", () => {
+            heroDamru.style.transition = "transform 0.5s ease";
+            heroDamru.style.transform = "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+        });
+    }
 
-// 3. Custom Glow Cursor System Create Karna
-const glowCursor = document.createElement("div");
-glowCursor.className = "custom-glow-cursor";
-document.body.appendChild(glowCursor);
+    // 3. Ambient Custom Glow Pointer Ring
+    const pointerGlow = document.createElement("div");
+    pointerGlow.style.position = "fixed";
+    pointerGlow.style.width = "300px";
+    pointerGlow.style.height = "300px";
+    pointerGlow.style.background = "radial-gradient(circle, rgba(214, 168, 79, 0.08) 0%, transparent 70%)";
+    pointerGlow.style.pointerEvents = "none";
+    pointerGlow.style.transform = "translate(-50%, -50%)";
+    pointerGlow.style.zIndex = "9999";
+    pointerGlow.style.mixBlendMode = "screen";
+    document.body.appendChild(pointerGlow);
 
-document.addEventListener("mousemove", (e) => {
-    glowCursor.style.left = `${e.clientX}px`;
-    glowCursor.style.top = `${e.clientY}px`;
+    document.addEventListener("mousemove", (e) => {
+        pointerGlow.style.left = e.clientX + "px";
+        pointerGlow.style.top = e.clientY + "px";
+    });
 });
