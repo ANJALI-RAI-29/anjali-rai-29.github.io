@@ -851,6 +851,9 @@ footer {
 
 /* 1. Custom Interactive Glow Cursor UI */
 .custom-glow-cursor {
+    z-index: 999999 !important; /* Sabse upar lane ke liye */
+}
+.custom-glow-cursor {
     width: 300px;
     height: 300px;
     background: radial-gradient(circle, rgba(214, 168, 79, 0.08) 0%, transparent 70%);
