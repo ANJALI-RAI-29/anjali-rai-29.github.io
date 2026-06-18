@@ -433,12 +433,22 @@ nav a:hover {
 /* ==========================================================================
    PROJECTS (PREMIUM LOOK)
    ========================================================================== */
-.project-grid {
-       display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-       gap: 25px !important;
-       width: 100%;
-   }
+@media (min-width: 992px) {
+    .project-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+}
+@media (max-width: 991px) {
+    .project-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+}
 
 .project-card {
     background: var(--card);
@@ -531,63 +541,72 @@ nav a:hover {
 /* ==========================================================================
    TIMELINE COSMIC LINE & DOTS ALIGNMENT ENGINE (FIXED)
    ========================================================================== */
-
+#journey .timeline, 
 .timeline {
     position: relative !important;
-    padding-left: 45px !important;
-    margin: 40px 0 !important;
+    padding-left: 40px !important;
+    margin: 50px 0 !important;
     display: block !important;
 }
 
-/* Is bar strict layout block dekar vertical axis line link kar rahe hain */
+#journey .timeline::before,
 .timeline::before {
     content: "" !important;
     position: absolute !important;
     left: 15px !important;
-    top: 10px !important;
-    bottom: 10px !important;
+    top: 5px !important;
+    bottom: 5px !important;
     width: 3px !important;
-    background: linear-gradient(180deg, var(--gold) 0%, var(--purple) 50%, var(--cyan) 100%) !important;
-    box-shadow: 0 0 12px rgba(214, 168, 79, 0.5) !important;
+    background: linear-gradient(180deg, #d6a84f 0%, #7c5cff 50%, #67e8f9 100%) !important;
+    box-shadow: 0 0 15px rgba(214, 168, 79, 0.6) !important;
     z-index: 1 !important;
+    display: block !important;
 }
 
 .timeline-item {
     position: relative !important;
-    margin-bottom: 35px !important;
+    margin-bottom: 30px !important;
     display: block !important;
+    width: 100% !important;
 }
 
-/* Dots ko explicit left configuration dekar seedhe line ke center par chipkayenge */
+#journey .timeline-dot,
 .timeline-dot {
     position: absolute !important;
-    left: -37px !important; /* Fixed coordinate overlap */
-    top: 25px !important;
+    left: -32px !important; 
+    top: 28px !important;
     width: 14px !important;
     height: 14px !important;
     border-radius: 50% !important;
-    background: #111111 !important;
-    border: 3px solid var(--gold) !important;
-    z-index: 5 !important;
-    box-shadow: 0 0 8px var(--gold) !important;
-    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    background: #0d0d0d !important;
+    border: 3px solid #d6a84f !important;
+    z-index: 10 !important;
+    box-shadow: 0 0 10px #d6a84f !important;
+    transition: 0.25s ease-out !important;
+    display: block !important;
 }
 
 .timeline-item:hover .timeline-dot {
-    background: var(--gold) !important;
-    box-shadow: 0 0 15px var(--gold), 0 0 25px var(--gold) !important;
-    transform: scale(1.25) !important;
+    background: #d6a84f !important;
+    box-shadow: 0 0 20px #d6a84f, 0 0 35px #d6a84f !important;
+    transform: scale(1.3) !important;
 }
 
 .timeline-content {
     background: rgba(255, 255, 255, 0.02) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     padding: 25px 30px !important;
-    border-radius: 18px !important;
-    transition: 0.3s ease !important;
+    border-radius: 16px !important;
+    transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
     display: block !important;
+}
+
+.timeline-content:hover {
+    transform: translateX(10px) !important;
+    border-color: rgba(124, 92, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
 }
 
 /* ==========================================================================
