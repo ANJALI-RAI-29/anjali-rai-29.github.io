@@ -188,6 +188,8 @@ nav a:hover {
     background: linear-gradient(90deg, #fff, var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text; /* Standard support fallback */
+    background-color: transparent !important; /* Grey patch hatane ke liye */
     text-shadow: 0 0 40px rgba(214,168,79,.4);
     animation: titleGlow 5s ease-in-out infinite;
 }
