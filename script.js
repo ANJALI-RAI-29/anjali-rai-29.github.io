@@ -145,3 +145,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+// 7. Advanced Theme Toggle & Persistence Management Engine
+document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("themeToggle");
+    if (!themeToggle) return;
+
+    // Local Storage se user ki purani preference check karna
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "light") {
+        document.body.classList.add("light-mode");
+        themeToggle.innerText = "☀️"; // Sun icon for light mode
+    }
+
+    // Toggle click trigger operation
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+        
+        let theme = "dark";
+        if (document.body.classList.contains("light-mode")) {
+            theme = "light";
+            themeToggle.innerText = "☀️";
+        } else {
+            themeToggle.innerText = "🌙";
+        }
+        
+        // Memory me state save karna taaki refresh par reset na ho
+        localStorage.setItem("theme", theme);
+    });
+});
