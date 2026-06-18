@@ -1144,3 +1144,25 @@ html, body {
     font-weight: 500 !important;
     letter-spacing: 0.2px !important;
 }
+/* ==========================================================================
+   ADVANCED HERO INTERACTION HERO LINK FIX
+   ========================================================================== */
+
+/* Elevating the hero inner content wrapper above background particle waves */
+.hero-inner,
+#hero .container,
+.hero-content {
+    position: relative !important;
+    z-index: 1000 !important; /* Visual plane stack high score */
+    pointer-events: auto !important; /* Explicitly forces element click capture */
+}
+
+/* Hardening the button elements interactive targeting layer */
+.hero-inner a,
+.hero-inner button,
+.btn {
+    position: relative !important;
+    z-index: 99999 !important; /* Pushes click surface to the absolute absolute front */
+    cursor: pointer !important;
+    pointer-events: auto !important; /* Making sure system reads mouse clicks */
+}
