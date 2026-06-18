@@ -1166,3 +1166,37 @@ html, body {
     cursor: pointer !important;
     pointer-events: auto !important; /* Making sure system reads mouse clicks */
 }
+/* ==========================================================================
+   ADVANCED HERO GLOBAL BUTTON CLICKABLE FIX (V9)
+   ========================================================================== */
+
+/* Shifting background wave/particle canvas backwards so it cannot steal clicks */
+#hero-particles,
+.hero-particles,
+.wave,
+.wave1,
+.wave2,
+.wave3 {
+    pointer-events: none !important; /* Disables mouse detection on background designs */
+    z-index: 1 !important;
+}
+
+/* Forcing the entire hero text container to the front of the interface matrix */
+.hero-inner,
+#hero .container,
+.hero-content {
+    position: relative !important;
+    z-index: 9999 !important; /* Stack element super high */
+    pointer-events: auto !important; /* Explicitly forces element click capture */
+}
+
+/* Locking absolute click tracking layer straight into the primary anchor grids */
+.hero-buttons a,
+#enterBtn,
+.primary-btn,
+.secondary-btn {
+    position: relative !important;
+    z-index: 999999 !important; /* Deep priority focus */
+    cursor: pointer !important;
+    pointer-events: auto !important; /* Standard browser forcing click execution */
+}
