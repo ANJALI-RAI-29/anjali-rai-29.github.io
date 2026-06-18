@@ -434,10 +434,11 @@ nav a:hover {
    PROJECTS (PREMIUM LOOK)
    ========================================================================== */
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+       gap: 25px !important;
+       width: 100%;
+   }
 
 .project-card {
     background: var(--card);
@@ -532,49 +533,60 @@ nav a:hover {
    ========================================================================== */
 .timeline {
     position: relative;
-    padding-left: 40px;
+    padding-left: 50px !important;
+    margin-top: 40px;
 }
 
 .timeline::before {
-    content: "";
+    content: "" !important;
     position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--gold);
+    left: 20px !important;
+    top: 5px;
+    bottom: 5px;
+    width: 2px !important;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--purple) 50%, var(--cyan) 100%) !important;
+    box-shadow: 0 0 15px rgba(214, 168, 79, 0.3);
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 40px !important;
 }
 
 .timeline-dot {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--gold);
     position: absolute;
-    left: -41px;
-    top: 5px;
-    box-shadow: 0 0 20px var(--gold);
+    left: -41px !important;
+    top: 12px !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    background: #000 !important;
+    border: 3px solid var(--gold) !important;
+    z-index: 2;
+    box-shadow: 0 0 10px var(--gold);
+    transition: 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    background: var(--gold) !important;
+    box-shadow: 0 0 20px var(--gold), 0 0 35px var(--gold);
+    transform: scale(1.2);
 }
 
 .timeline-content {
-    background: var(--card);
-    padding: 25px;
-    border-radius: 18px;
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 30px !important;
+    border-radius: 20px !important;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.timeline-content h3 {
-    margin-bottom: 10px;
-}
-
-.timeline-content p {
-    line-height: 1.8;
-    color: var(--muted);
+.timeline-content:hover {
+    transform: translateX(8px);
+    border-color: rgba(124, 92, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
 }
 
 /* ==========================================================================
