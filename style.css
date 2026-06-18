@@ -1201,42 +1201,67 @@ html, body {
     pointer-events: auto !important; /* Standard browser forcing click execution */
 }
 /* ==========================================================================
-   DYNAMIC COSMIC THEME SWITCHER CORES
+   DYNAMIC COSMIC THEME SWITCHER CORES (V2 - FULL INVERSION FIXED)
    ========================================================================== */
 
-/* Light Mode Variables override framework */
+/* 1. Global Light Mode Variable Core Overrides */
 body.light-mode {
-    --background: #f4f5f7 !important;       /* Clean light grey/white space */
-    --text: #0f172a !important;             /* Deep slate dark text */
-    --text-muted: #64748b !important;       /* Muted grey reading text */
-    --card: rgba(0, 0, 0, 0.03) !important; /* Soft minimal outline cards */
-    --border: rgba(0, 0, 0, 0.08) !important;
+    background: #f8fafc !important;         /* Forces body background to pristine light slate */
+    --background: #f8fafc !important;       
+    --text: #0f172a !important;             /* Pure deep slate dark text */
+    --text-muted: #475569 !important;       /* Highly visible muted charcoal text */
+    --card: rgba(15, 23, 42, 0.04) !important; 
+    --border: rgba(15, 23, 42, 0.1) !important;
 }
 
-/* Smooth transit system animation when colors invert */
+/* Smooth color morphing transition across elements */
 body {
-    transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                color 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
 }
 
-/* Light mode overrides for transparent blur widgets */
-body.light-mode .timeline-content,
-body.light-mode .project-card,
-body.light-mode .agent-terminal-widget {
-    background: rgba(0, 0, 0, 0.02) !important;
-    border-color: rgba(0, 0, 0, 0.08) !important;
-    color: #0f172a !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
-}
-
-/* Dark color forcing adjustments inside light containers */
-body.light-mode h1, 
-body.light-mode h2, 
-body.light-mode h3, 
+/* 2. Strict Bruteforce Text Visibility Rules for Light Mode */
+body.light-mode,
+body.light-mode *,
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
 body.light-mode p,
-body.light-mode span:not(.status-text):not(.terminal-title) {
-    color: #0f172a !important;
+body.light-mode span,
+body.light-mode li,
+body.light-mode div,
+body.light-mode a:not(.primary-btn):not(.secondary-btn) {
+    color: #0f172a !important; /* Shuddh dark slate colors for everything */
 }
+
+/* Muted text optimization for reading contrast */
+body.light-mode .text-muted,
+body.light-mode .section-header p,
+body.light-mode p:not(h3) {
+    color: #475569 !important; 
+}
+
+/* 3. Glassmorphic Cards Light Mode Adaptability */
+body.light-mode .project-card,
+body.light-mode .timeline-content,
+body.light-mode .agent-terminal-widget,
+body.light-mode .focus-card,
+body.light-mode .skill-category,
+body.light-mode .about-card,
+body.light-mode .timeline-item {
+    background: rgba(15, 23, 42, 0.03) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* 4. Marquee Text Light Mode Contrast Fix */
 body.light-mode .tech-marquee-content span {
-    color: rgba(0, 0, 0, 0.08) !important; /* Soft watermark scrolling */
+    color: rgba(15, 23, 42, 0.12) !important; 
+}
+
+/* DAMRU-AGI_ENGINE title specific override */
+body.light-mode .terminal-header span {
+    color: #0f172a !important;
 }
