@@ -529,48 +529,54 @@ nav a:hover {
 }
 
 /* ==========================================================================
-   TIMELINE / JOURNEY
+   TIMELINE COSMIC LINE & DOTS ALIGNMENT ENGINE (FIXED)
    ========================================================================== */
+
 .timeline {
-    position: relative;
-    padding-left: 50px !important;
-    margin-top: 40px;
+    position: relative !important;
+    padding-left: 45px !important;
+    margin: 40px 0 !important;
+    display: block !important;
 }
 
+/* Is bar strict layout block dekar vertical axis line link kar rahe hain */
 .timeline::before {
     content: "" !important;
-    position: absolute;
-    left: 20px !important;
-    top: 5px;
-    bottom: 5px;
-    width: 2px !important;
+    position: absolute !important;
+    left: 15px !important;
+    top: 10px !important;
+    bottom: 10px !important;
+    width: 3px !important;
     background: linear-gradient(180deg, var(--gold) 0%, var(--purple) 50%, var(--cyan) 100%) !important;
-    box-shadow: 0 0 15px rgba(214, 168, 79, 0.3);
+    box-shadow: 0 0 12px rgba(214, 168, 79, 0.5) !important;
+    z-index: 1 !important;
 }
 
 .timeline-item {
-    position: relative;
-    margin-bottom: 40px !important;
+    position: relative !important;
+    margin-bottom: 35px !important;
+    display: block !important;
 }
 
+/* Dots ko explicit left configuration dekar seedhe line ke center par chipkayenge */
 .timeline-dot {
-    position: absolute;
-    left: -41px !important;
-    top: 12px !important;
-    width: 16px !important;
-    height: 16px !important;
+    position: absolute !important;
+    left: -37px !important; /* Fixed coordinate overlap */
+    top: 25px !important;
+    width: 14px !important;
+    height: 14px !important;
     border-radius: 50% !important;
-    background: #000 !important;
+    background: #111111 !important;
     border: 3px solid var(--gold) !important;
-    z-index: 2;
-    box-shadow: 0 0 10px var(--gold);
-    transition: 0.3s ease;
+    z-index: 5 !important;
+    box-shadow: 0 0 8px var(--gold) !important;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .timeline-item:hover .timeline-dot {
     background: var(--gold) !important;
-    box-shadow: 0 0 20px var(--gold), 0 0 35px var(--gold);
-    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--gold), 0 0 25px var(--gold) !important;
+    transform: scale(1.25) !important;
 }
 
 .timeline-content {
@@ -578,15 +584,10 @@ nav a:hover {
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    padding: 30px !important;
-    border-radius: 20px !important;
-    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.timeline-content:hover {
-    transform: translateX(8px);
-    border-color: rgba(124, 92, 255, 0.3) !important;
-    background: rgba(255, 255, 255, 0.03) !important;
+    padding: 25px 30px !important;
+    border-radius: 18px !important;
+    transition: 0.3s ease !important;
+    display: block !important;
 }
 
 /* ==========================================================================
