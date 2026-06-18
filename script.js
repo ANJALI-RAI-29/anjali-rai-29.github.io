@@ -12,73 +12,46 @@ window.addEventListener("load", () => {
 });
 
 /* =========================
-   AUDIO & SOUND SYSTEM (MOBILE OPTIMIZED)
+   AUDIO & SOUND SYSTEM
 ========================= */
 const bgAudio = document.getElementById("damruAudio");
 const enterBtn = document.getElementById("enterBtn");
 const soundToggle = document.getElementById("soundToggle");
 
-let isMuted = true;
-
-// Mobile ke liye audio ko pehle se ready rakhne ke liye
-if (bgAudio) {
-    bgAudio.load();
-}
-
 if (enterBtn && bgAudio) {
     enterBtn.addEventListener("click", () => {
-        // Audio volume set karein aur unmute karein
         bgAudio.muted = false;
         bgAudio.volume = 1.0;
-
-        bgAudio.play()
-            .then(() => {
-                isMuted = false;
-                if (soundToggle) soundToggle.innerText = "🔊";
-                console.log("Sound started successfully!");
-                
-                // Alert daal rahe hain check karne ke liye (Sab sahi chalne par ise hata sakte hain)
-                // alert("Sound is playing!"); 
-            })
-            .catch((error) => {
-                console.log("Playback blocked or file not found:", error);
-                alert("Audio play nahi ho paya: " + error.message);
-            });
+        bgAudio.play();
+        if (soundToggle) {
+            soundToggle.innerText = "🔊";
+        }
     });
 }
 
 if (soundToggle && bgAudio) {
     soundToggle.addEventListener("click", () => {
-        if (isMuted) {
+        if (bgAudio.muted) {
             bgAudio.muted = false;
-            bgAudio.play()
-                .then(() => {
-                    isMuted = false;
-                    soundToggle.innerText = "🔊";
-                })
-                .catch(err => console.log(err));
+            bgAudio.play();
+            soundToggle.innerText = "🔊";
         } else {
             bgAudio.muted = true;
-            isMuted = true;
             soundToggle.innerText = "🔇";
         }
     });
 }
 
-
 /* =========================
    CONTACT FORM
 ========================= */
 const form = document.getElementById("contactForm");
-
 if (form) {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         const button = form.querySelector("button");
         const oldText = button.innerText;
-
         button.innerText = "Message Sent ✓";
-
         setTimeout(() => {
             form.reset();
             button.innerText = oldText;
@@ -113,13 +86,10 @@ revealElements.forEach((el) => {
    PREMIUM 3D DAMRU & PARALLAX
 ========================= */
 const heroDamru = document.querySelector(".hero-damru");
-
 document.addEventListener("mousemove", (e) => {
     if (!heroDamru) return;
-
     const x = (e.clientX / window.innerWidth - 0.5) * 30;
     const y = (e.clientY / window.innerHeight - 0.5) * 30;
-
     heroDamru.style.transform = `rotateY(${x}deg) rotateX(${-y}deg) translate(${x/1.5}px, ${y/1.5}px)`;
 });
 
@@ -127,7 +97,6 @@ document.addEventListener("mousemove", (e) => {
    NAVBAR SCROLL EFFECT
 ========================= */
 const navbar = document.querySelector(".navbar");
-
 window.addEventListener("scroll", () => {
     if (!navbar) return;
     if (window.scrollY > 50) {
@@ -155,9 +124,3 @@ style.innerHTML = `
 }
 `;
 document.head.appendChild(style);
-
-/* =========================
-   CONSOLE LOGS
-========================= */
-console.log("%cडमरू", "font-size:32px;color:gold;font-weight:bold;");
-console.log("Rhythm of Innovation");
