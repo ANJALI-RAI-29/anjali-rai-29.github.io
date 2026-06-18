@@ -100,3 +100,33 @@ magneticButtons.forEach(btn => {
         btn.style.transform = "translate(0px, 0px) scale(1)";
     });
 });
+// 5. Autonomous AI Agent Runtime Terminal Execution
+document.addEventListener("DOMContentLoaded", () => {
+    const logsContainer = document.getElementById("agentTerminalLogs");
+    if (!logsContainer) return;
+
+    const logTemplates = [
+        { text: "[Thought] Scanning cloud compute layers for agentic scaling...", class: "text-purple" },
+        { text: "[Action] Syncing cognitive maps with active Vector DB matrix.", class: "text-cyan" },
+        { text: "[Status] Parsing deep model weight distributions...", class: "text-gold" },
+        { text: "[Success] Execution telemetry stable. Latency check: 12ms.", class: "text-green" },
+        { text: "[Agent] Standby mode complete. Tuning automation pipelines.", class: "text-cyan" }
+    ];
+
+    let currentLogIdx = 0;
+
+    setInterval(() => {
+        const newLineNode = document.createElement("div");
+        newLineNode.className = `log-line ${logTemplates[currentLogIdx].class}`;
+        newLineNode.innerText = logTemplates[currentLogIdx].text;
+        
+        logsContainer.appendChild(newLineNode);
+        
+        // Remove tracking height limit logs
+        if (logsContainer.children.length > 5) {
+            logsContainer.removeChild(logsContainer.children[0]);
+        }
+        
+        currentLogIdx = (currentLogIdx + 1) % logTemplates.length;
+    }, 3200);
+});
