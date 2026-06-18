@@ -539,10 +539,9 @@ nav a:hover {
 }
 
 /* ==========================================================================
-   THE FINAL REPAIR: TIMELINE RADIAL ALIGNMENT ENGINE (FIXED V5)
+   SOLID MATRIX TIMELINE ENGINE (FIXED V6)
    ========================================================================== */
 
-/* Parent block alignment fix to force display lines */
 #journey, .section.dark-section {
     position: relative !important;
     overflow: visible !important; 
@@ -553,41 +552,24 @@ nav a:hover {
     overflow: visible !important;
 }
 
-#journey .timeline {
-    position: relative !important;
-    padding-left: 60px !important; 
-    margin: 60px 0 !important;
-    display: block !important;
-    overflow: visible !important;
-}
-
-/* Designing the actual explicit vertical gradient line channel */
-#journey .timeline::before {
-    content: "" !important;
+/* 1. Structural Hard Line Configuration */
+.timeline-hard-line {
     position: absolute !important;
     left: 20px !important; 
     top: 15px !important;
-    bottom: 15px !important;
+    bottom: 35px !important;
     width: 3px !important;
     background: linear-gradient(180deg, #d6a84f 0%, #7c5cff 50%, #67e8f9 100%) !important;
     box-shadow: 0 0 15px rgba(214, 168, 79, 0.6) !important;
-    z-index: 5 !important;
+    z-index: 2 !important;
     display: block !important;
 }
 
-#journey .timeline-item {
-    position: relative !important;
-    margin-bottom: 40px !important;
-    display: block !important;
-    width: 100% !important;
-    overflow: visible !important;
-}
-
-/* Snap-fit milestone nodes directly over the structural line */
+/* 2. Precision Dot Alignment Overlap */
 #journey .timeline-dot {
     position: absolute !important;
     left: -46px !important; 
-    top: 32px !important;  
+    top: 30px !important;  
     width: 14px !important;
     height: 14px !important;
     border-radius: 50% !important;
@@ -595,17 +577,17 @@ nav a:hover {
     border: 3px solid #d6a84f !important;
     z-index: 10 !important;
     box-shadow: 0 0 10px #d6a84f !important;
-    transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: 0.25s ease-out !important;
     display: block !important;
 }
 
-/* Continuous dynamic glow activation on hover */
 #journey .timeline-item:hover .timeline-dot {
     background: #d6a84f !important;
     box-shadow: 0 0 20px #d6a84f, 0 0 35px #d6a84f !important;
     transform: scale(1.3) !important;
 }
 
+/* 3. Glassmorphic Cards Restyling */
 #journey .timeline-content {
     background: rgba(255, 255, 255, 0.02) !important;
     backdrop-filter: blur(25px) !important;
