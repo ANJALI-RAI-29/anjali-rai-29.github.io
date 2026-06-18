@@ -843,3 +843,95 @@ footer {
     .hero-title { font-size: 2.8rem !important; }
     .section-header h2 { font-size: 1.6rem !important; }
 }
+/* ==========================================================================
+   VERSION 3: HIGH-END PREMIUM COSMETIC UPGRADES
+   ========================================================================== */
+
+/* 1. Custom Interactive Glow Cursor UI */
+.custom-glow-cursor {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(214, 168, 79, 0.08) 0%, transparent 70%);
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: screen;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* 2. Apple-Style Ultra Glassmorphism */
+.hero-left, .about-card, .focus-card, .project-card, .timeline-content, .github-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. Volumetric Realistic Golden Light Rays */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: -10%;
+    right: 10%;
+    width: 500px;
+    height: 600px;
+    background: repeating-linear-gradient(60deg, 
+                transparent, 
+                transparent 40px, 
+                rgba(214, 168, 79, 0.04) 40px, 
+                rgba(214, 168, 79, 0.04) 80px);
+    mask-image: radial-gradient(circle at top right, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at top right, black 30%, transparent 80%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 4. Star Field Background Space Effect */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(rgba(254,240,138,0.5), rgba(254,240,138,0.1) 1px, transparent 30px);
+    background-size: 550px 550px, 350px 350px;
+    background-position: 0 0, 40px 60px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 5. Animated Sanskrit/Sacred Core Particles (Glow Nodes) */
+.hero-particles::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, var(--gold) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.2;
+    animation: floatingParticles 20s linear infinite;
+}
+
+@keyframes floatingParticles {
+    0% { background-position: 0px 0px; }
+    100% { background-position: 80px 160px; }
+}
+
+/* 6. Premium Gradient Section Divider Masks */
+.dark-section {
+    background: linear-gradient(180deg, #0b0b0f 0%, #121218 50%, #0b0b0f 100%) !important;
+    position: relative;
+    border-top: 1px solid rgba(214, 168, 79, 0.05);
+    border-bottom: 1px solid rgba(214, 168, 79, 0.05);
+}
+
+/* Hover scales enhancements for Glass Panels */
+.about-card:hover, .focus-card:hover, .project-card:hover {
+    border-color: rgba(214, 168, 79, 0.3) !important;
+    box-shadow: 0 30px 70px rgba(214, 168, 79, 0.1) !important;
+    transform: translateY(-8px) scale(1.01) !important;
+}
