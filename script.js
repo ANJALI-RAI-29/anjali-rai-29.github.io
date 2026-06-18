@@ -97,3 +97,37 @@ style.innerHTML = `
 }
 `;
 document.head.appendChild(style);
+/* ==========================================================================
+   VERSION 3 UPGRADE: ADVANCED 3D POSITIONING & CURSOR TRACKING
+   ========================================================================== */
+const premiumDamru = document.querySelector(".hero-damru");
+const heroBox = document.querySelector(".hero");
+
+if (heroBox && premiumDamru) {
+    heroBox.addEventListener("mousemove", (e) => {
+        const rect = heroBox.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        // Multiplier badha kar depth effect 3D kiya gaya hai
+        const rotateX = (-y / rect.height) * 35; 
+        const rotateY = (x / rect.width) * 35;
+        
+        premiumDamru.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    });
+    
+    // Mouse bahar jaane par wapas default elastic positions par lane ke liye
+    heroBox.addEventListener("mouseleave", () => {
+        premiumDamru.style.transform = "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    });
+}
+
+// 3. Custom Glow Cursor System Create Karna
+const glowCursor = document.createElement("div");
+glowCursor.className = "custom-glow-cursor";
+document.body.appendChild(glowCursor);
+
+document.addEventListener("mousemove", (e) => {
+    glowCursor.style.left = `${e.clientX}px`;
+    glowCursor.style.top = `${e.clientY}px`;
+});
