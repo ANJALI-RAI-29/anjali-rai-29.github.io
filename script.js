@@ -267,13 +267,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!viewer || !frameImg) return;
 
-    // Perfect structural sequential order with your exact updated filenames
+        // Fully calibrated sequential order based on your exact GitHub repository file names
     const frames = [
-        "damru-transparent.png", // Frame 1: Transparent Isometric View (Updated!)
-        "damru2.png",             // Frame 2: Centered Profile View
-        "1000431726.png",         // Frame 3: Classic Left Angular Tilt
-        "damru3.png"              // Frame 4: Flat Grounded Side Orientation
+        "1000431814-removebg-preview.png.png", // Frame 1 (Double .png extension match)
+        "damru2.png",                           // Frame 2
+        "damru-transparent.png",                // Frame 3 (Exact name from your repo)
+        "damru3.png"                            // Frame 4
     ];
+
 
     let isDragging = false;
     let startX = 0;
