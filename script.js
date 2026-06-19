@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 // ==========================================================================
-// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (SMOOTH MATRIX MODEL)
+// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (13-FRAME ULTRA-SMOOTH PRODUCTION)
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const viewer = document.getElementById("damruViewer");
@@ -267,11 +267,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!viewer || !frameImg) return;
 
+    // Full sequential database matrix combining all 13 high-res angles
     const frames = [
-        "1000431814-removebg-preview.png",
-        "damru2.png",
-        "damru-transparent.png",
-        "damru3.png"
+        "1000431814-removebg-preview.png", // Base Frame 1
+        "damru2.png",                       // Base Frame 2
+        "damru-transparent.png",            // Base Frame 3
+        "damru3.png",                       // Base Frame 4
+        "damru11.png",                      // New Frame 5
+        "damru12.png",                      // New Frame 6
+        "damru13.png",                      // New Frame 7
+        "damru14.png",                      // New Frame 8
+        "damru15.png",                      // New Frame 9
+        "damru16.png",                      // New Frame 10
+        "damru17.png",                      // New Frame 11
+        "damru18.png",                      // New Frame 12
+        "damru19.png"                       // New Frame 13
     ];
 
     let isDragging = false;
@@ -279,13 +289,22 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentFrameIndex = 0;
     const totalFrames = frames.length;
     
-    // Smoothness Optimizer: pixelsPerFrame ko 40 kiya taaki swipe zyada organic lage
-    const pixelsPerFrame = 40; 
+    // Sensitivity Calibrator: Optimized to 15 pixels since frame volume is higher
+    const pixelsPerFrame = 15; 
+
+    // Pre-cache core asset pipeline to completely eliminate white screen flickering
+    const preloadFrames = () => {
+        frames.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    };
+    preloadFrames();
 
     const startInteraction = (clientX) => {
         isDragging = true;
         startX = clientX;
-        if(frameImg) frameImg.style.transform = "scale(1.02)"; // Halk sa lift effect on touch
+        if (frameImg) frameImg.style.transform = "scale(1.02)"; // Subtle scale depth feedback
     };
 
     const moveInteraction = (clientX) => {
@@ -295,35 +314,31 @@ document.addEventListener("DOMContentLoaded", () => {
         let frameOffset = Math.floor(deltaX / pixelsPerFrame);
         
         if (frameOffset !== 0) {
-            // Smooth reverse tracking direction logic
+            // Dynamic sequence indexing loop with strict boundary mapping
             currentFrameIndex = (currentFrameIndex - frameOffset + totalFrames) % totalFrames;
-            
-            // Pre-loading fallback to avoid white flickers
-            const imgCache = new Image();
-            imgCache.src = frames[currentFrameIndex];
-            imgCache.onload = () => {
-                frameImg.src = frames[currentFrameIndex];
-            };
-
-            startX = clientX; 
+            frameImg.src = frames[currentFrameIndex];
+            startX = clientX; // Sync anchor to handle continuous directional shifts
         }
     };
 
     const endInteraction = () => {
+        if (!isDragging) return;
         isDragging = false;
-        if(frameImg) frameImg.style.transform = "scale(1)"; // Reset lift effect
+        if (frameImg) frameImg.style.transform = "scale(1)"; // Reset depth feedback
     };
 
-    // Desktop
+    // --- SYSTEM DESKTOP LISTENERS ---
     viewer.addEventListener("mousedown", (e) => startInteraction(e.clientX));
     window.addEventListener("mousemove", (e) => moveInteraction(e.clientX));
     window.addEventListener("mouseup", endInteraction);
 
-    // Mobile Phone
-    viewer.addEventListener("touchstart", (e) => startInteraction(e.touches[0].clientX));
+    // --- MOBILE SENSITIVE INTERFACE LISTENERS ---
+    viewer.addEventListener("touchstart", (e) => startInteraction(e.touches[0].clientX), { passive: true });
     viewer.addEventListener("touchmove", (e) => {
-        if (isDragging) e.preventDefault(); 
-        moveInteraction(e.touches[0].clientX);
+        if (isDragging) {
+            if (e.cancelable) e.preventDefault(); // Lock window background scroll vector while rotating
+            moveInteraction(e.touches[0].clientX);
+        }
     }, { passive: false });
     viewer.addEventListener("touchend", endInteraction);
 });
