@@ -1360,3 +1360,10 @@ body.light-mode #sendChatBtn {
 body.light-mode .drag-hint {
     color: rgba(0, 0, 0, 0.5);
 }
+.damru-3d-viewer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+    transition: transform 0.1s ease-out; /* Isse movement soft ho jayegi */
+}
