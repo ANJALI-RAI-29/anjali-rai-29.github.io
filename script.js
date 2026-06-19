@@ -174,92 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 // ==========================================================================
-// 8. DAMRU SMART CONVERSATIONAL CHAT BOT ENGINE (SUPER POLITE EDITION)
-// ==========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    const chatInput = document.getElementById("chatInput");
-    const sendChatBtn = document.getElementById("sendChatBtn");
-    const chatBody = document.getElementById("chatBody");
-
-    if (!chatInput || !sendChatBtn || !chatBody) return;
-
-    const triggerBotResponse = () => {
-        const rawInput = chatInput.value.trim();
-        const userText = rawInput.toLowerCase();
-        if (userText === "") return;
-
-        // User ka message screen par dikhana
-        chatBody.innerHTML += `<p style="color: #94a3b8; margin: 4px 0;">[You]: ${rawInput}</p>`;
-        chatInput.value = "";
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        let reply = "";
-
-        // 1. GREETINGS & WELCOME
-        if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey") || userText.includes("hii") || userText.includes("yo")) {
-            reply = "Hi! How can I help you today? 😊 You can ask me about my skills, projects, or how to contact me!";
-        } 
-        else if (userText.includes("whats up") || userText.includes("sup") || userText.includes("kya haal")) {
-            reply = "All good here! 😎 Just hanging out in the digital world and showing some cool work. How's everything on your end?";
-        }
-        else if (userText.includes("yourself") || userText.includes("who") || userText.includes("intro") || userText.includes("about") || userText.includes("name")) {
-            reply = "I am the DAMRU Chat Bot! 🤖 I was built from scratch to act as a friendly virtual guide for this portfolio. I can show you my creator's skills, tech stack, and top projects!";
-        }
-
-        // 2. MOOD & EMPATHY
-        else if (userText.includes("sad") || userText.includes("bad") || userText.includes("upset") || userText.includes("depressed")) {
-            reply = "Oh no, I'm so sorry to hear that! 🥺 I might just be a small bot, but I truly hope your day gets a lot brighter soon. Maybe checking out some creative projects here will cheer you up! ✨";
-        }
-        else if (userText.includes("happy") || userText.includes("good") || userText.includes("feeling") || userText.includes("how are you")) {
-            reply = "I'm feeling great! ⚡ Super happy and ready to show you around. How are you doing today?";
-        }
-
-        // 3. FUN & HUMOR 
-        else if (userText.includes("dumb") || userText.includes("stupid") || userText.includes("pagal") || userText.includes("fool")) {
-            reply = "Hey, give me some credit! 😜 I might not know everything, but I'm smart enough to instantly guide you to the coolest 'skills' and 'projects' on this site! Give it a try.";
-        }
-
-        // 4. MAUSAM & KHANA (Ab ekdam simple, cute aur polite!)
-        else if (userText.includes("weather") || userText.includes("rain") || userText.includes("hot") || userText.includes("climate") || userText.includes("mausam")) {
-            reply = "I don't really know the weather out there since I live inside this website! ⛅ But I truly hope it's a beautiful, pleasant day wherever you are browsing from!";
-        }
-        else if (userText.includes("eat") || userText.includes("food") || userText.includes("khana") || userText.includes("lunch")) {
-            reply = "I don't eat real food since I'm just a small website bot! 🍰 But I love sweet words, and I truly hope you are having something really delicious today! What's your favorite dish?";
-        }
-        
-        // 5. PROJECTS, SKILLS & CONTACT
-        else if (userText.includes("skill") || userText.includes("tech") || userText.includes("know") || userText.includes("code")) {
-            reply = "I work with C programming, HTML, CSS, and JavaScript. Currently, I'm diving deep into modern domains like Cloud Computing, AI, and Machine Learning! 🚀";
-        } 
-        else if (userText.includes("project") || userText.includes("work") || userText.includes("built") || userText.includes("website")) {
-            reply = "I love building things! 🌟 Right now, my top features are: 1. A Sustainable Smart Gym concept (converting physical energy to electricity) and 2. This dynamic portfolio interface. Scroll down to see them live!";
-        } 
-        else if (userText.includes("contact") || userText.includes("email") || userText.includes("linkedin") || userText.includes("github")) {
-            reply = "Let's connect! ⚡ You can find all my official social handles in the Contact Section at the absolute bottom of this page. Let's talk!";
-        } 
-        else if (userText.includes("cool") || userText.includes("nice") || userText.includes("awesome") || userText.includes("great") || userText.includes("mst")) {
-            reply = "Haha, thank you so much! That means a lot coming from you. 🙌 Feel free to look around and test everything!";
-        } 
-
-        // 6. SWEET POLITE APOLOGY FALLBACK
-        else {
-            reply = "I'm so sorry, I don't have information regarding this. 🐾 I am just a small custom chatbot built to guide you through this portfolio. Try typing 'skills' or 'projects' to see what I can show you! ✨";
-        }
-
-        // Bot ka response delay simulation (400ms)
-        setTimeout(() => {
-            chatBody.innerHTML += `<p class="bot-msg" style="color: #d6a84f; margin: 4px 0;">[Bot]: ${reply}</p>`;
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }, 400);
-    };
-
-    sendChatBtn.addEventListener("click", triggerBotResponse);
-    chatInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") triggerBotResponse();
-    });
-});
-// ==========================================================================
-// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (PRO AUTO-SPIN INTEGRATION)
+// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (MANUAL DRAG WITH FLOATING)
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const viewer = document.getElementById("damruViewer");
@@ -273,52 +188,24 @@ document.addEventListener("DOMContentLoaded", () => {
     let startX = 0;
     let currentFrameIndex = 0;
     
-    // Manual Drag Settings
+    // Slow aur buttery smooth shift handle karne ke liye optimized pixel gaps
     const pixelsPerFrame = 55; 
 
-    // --- AUTO ROTATION SYSTEM CORE VARIABLES ---
-    let autoRotationInterval = null;
-    const autoSpinSpeed = 180; // Speed Calibrator: Har 180ms me frame badlega (Lower = Faster spin)
-    const autoSpinDelay = 2000; // Delay Calibrator: Touch chorhne ke 2 seconds baad wapas auto-spin shuru hoga
-    let resumeTimeout = null;
-
-    // Core Frame Switch Function
     const switchFrame = (newIndex) => {
         frames[currentFrameIndex].classList.remove("active");
         currentFrameIndex = (newIndex + totalFrames) % totalFrames;
         frames[currentFrameIndex].classList.add("active");
     };
 
-    // 🔄 Infinite Automation Loop Engine
-    const startAutoRotation = () => {
-        if (autoRotationInterval) return; // Prevent multiple overlay loops
-        autoRotationInterval = setInterval(() => {
-            // Forward direction incremental mapping loop
-            let nextFrame = (currentFrameIndex + 1) % totalFrames;
-            switchFrame(nextFrame);
-        }, autoSpinSpeed);
-    };
-
-    const stopAutoRotation = () => {
-        if (autoRotationInterval) {
-            clearInterval(autoRotationInterval);
-            autoRotationInterval = null;
-        }
-    };
-
-    // Bootstrap initial automated cycle animation instantly on page load
-    startAutoRotation();
-
-    // --- INTERACTIVE DRAG HANDLERS ---
     const startInteraction = (clientX) => {
         isDragging = true;
         startX = clientX;
         
-        stopAutoRotation(); // Touch karte hi auto-spin instant band ho jaye
-        clearTimeout(resumeTimeout); // Purane timing triggers ko reset karein
-
         const container = viewer.querySelector(".damru-frames-container");
-        if (container) container.style.transform = "scale(1.02)";
+        if (container) {
+            // Touch karte hi float temporary smooth scale tracking hold karega
+            container.style.transform = "scale(1.02)"; 
+        }
     };
 
     const moveInteraction = (clientX) => {
@@ -340,26 +227,20 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const container = viewer.querySelector(".damru-frames-container");
         if (container) container.style.transform = "scale(1)";
-
-        // User jaise hi finger hatae, 2 seconds ke rest interval ke baad wapas auto-spin toggle ho jaye
-        resumeTimeout = setTimeout(() => {
-            startAutoRotation();
-        }, autoSpinDelay);
     };
 
-    // --- DESKTOP ENGINE LISTENERS ---
+    // --- DESKTOP MOUSE INTERFACE SYSTEM ---
     viewer.addEventListener("mousedown", (e) => startInteraction(e.clientX));
     window.addEventListener("mousemove", (e) => moveInteraction(e.clientX));
     window.addEventListener("mouseup", endInteraction);
 
-    // --- MOBILE INTERFACE LISTENERS ---
+    // --- SMART MOBILE INTERFACE SYSTEM ---
     viewer.addEventListener("touchstart", (e) => startInteraction(e.touches[0].clientX), { passive: true });
     viewer.addEventListener("touchmove", (e) => {
         if (isDragging) {
-            if (e.cancelable) e.preventDefault(); // Stop default web layout bounce physics
+            if (e.cancelable) e.preventDefault(); // Stop default web panel bounce scrolling
             moveInteraction(e.touches[0].clientX);
         }
     }, { passive: false });
     viewer.addEventListener("touchend", endInteraction);
 });
-
