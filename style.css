@@ -1342,7 +1342,25 @@ body.light-mode #sendChatBtn {
     width: 100%;
     display: grid; /* Layers ko center stack karne ke liye grid layout */
     grid-template-columns: 1fr;
+    
+    /* 🚀 PREMIUM HOVER/BOBBING ANIMATION EFFECT */
+    animation: damruFloat 4s ease-in-out infinite; 
+    will-change: transform;
 }
+
+/* Damru ko hawa me upar-neeche aaram se float karne ke liye math coordinates */
+@keyframes damruFloat {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px); /* 12 pixel upar jayega soft fluid wave me */
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 .damru-frame {
     grid-column: 1;
     grid-row: 1;
