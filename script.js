@@ -258,3 +258,62 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "Enter") triggerBotResponse();
     });
 });
+// ==========================================================================
+// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (FINAL 4-FRAME LINEUP)
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const viewer = document.getElementById("damruViewer");
+    const frameImg = document.getElementById("damruFrame");
+
+    if (!viewer || !frameImg) return;
+
+    // Perfect structural sequential order with your exact updated filenames
+    const frames = [
+        "damru-transparent.png", // Frame 1: Transparent Isometric View (Updated!)
+        "damru2.png",             // Frame 2: Centered Profile View
+        "1000431726.png",         // Frame 3: Classic Left Angular Tilt
+        "damru3.png"              // Frame 4: Flat Grounded Side Orientation
+    ];
+
+    let isDragging = false;
+    let startX = 0;
+    let currentFrameIndex = 0;
+    const totalFrames = frames.length;
+    const pixelsPerFrame = 25; // Drag sensitivity scale (Lower = Faster state response)
+
+    const startInteraction = (clientX) => {
+        isDragging = true;
+        startX = clientX;
+    };
+
+    const moveInteraction = (clientX) => {
+        if (!isDragging) return;
+
+        const deltaX = clientX - startX;
+        let frameOffset = Math.floor(deltaX / pixelsPerFrame);
+        
+        if (frameOffset !== 0) {
+            // Update cycle indexing with backward and forward dynamic boundary tracking
+            currentFrameIndex = (currentFrameIndex - frameOffset + totalFrames) % totalFrames;
+            frameImg.src = frames[currentFrameIndex];
+            startX = clientX; // Anchor marker reset for fluid continuum flow
+        }
+    };
+
+    const endInteraction = () => {
+        isDragging = false;
+    };
+
+    // --- DESKTOP TRACK LISTENERS ---
+    viewer.addEventListener("mousedown", (e) => startInteraction(e.clientX));
+    window.addEventListener("mousemove", (e) => moveInteraction(e.clientX));
+    window.addEventListener("mouseup", endInteraction);
+
+    // --- SMART PHONE INTERFACE LISTENERS ---
+    viewer.addEventListener("touchstart", (e) => startInteraction(e.touches[0].clientX));
+    viewer.addEventListener("touchmove", (e) => {
+        if (isDragging) e.preventDefault(); // Disables structural background scroll physics while dragging
+        moveInteraction(e.touches[0].clientX);
+    }, { passive: false });
+    viewer.addEventListener("touchend", endInteraction);
+});
