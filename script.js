@@ -194,13 +194,17 @@ document.addEventListener("DOMContentLoaded", () => {
         chatBody.scrollTop = chatBody.scrollHeight;
 
         let reply = "";
-
         // 1. CASUAL GREETINGS (Friendly & Welcoming)
         if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey") || userText.includes("hii")) {
             reply = "Hi! How can I help you today? 😊 You can ask me about my skills, projects, or how to contact me!";
         } 
         else if (userText.includes("whats up") || userText.includes("what sup") || userText.includes("sup") || userText.includes("how are you")) {
             reply = "All good here! 😎 Just hanging out in the digital world and showcasing some cool work. How's everything on your end?";
+        }
+        
+        // 1b. IDENTITY & INTRODUCTION KEYWORDS (Fix for your query!)
+        else if (userText.includes("who are you") || userText.includes("intro") || userText.includes("yourself") || userText.includes("your name")) {
+            reply = "I am the DAMRU Chat Bot! 🤖 I was built from scratch using vanilla JavaScript to act as a friendly virtual guide for this portfolio. I can show you my creator's skills, tech stack, and top engineering projects!";
         }
         
         // 2. TECH & SKILLS KEYWORDS
@@ -227,6 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
             reply = "I'm so sorry, I don't have information regarding this. 🐾 I am just a small custom chatbot built to guide you through this portfolio. Try typing 'skills' or 'projects' to see what I can show you! ✨";
         }
+
 
         // Natural dynamic delay simulation (400ms) for professional delivery
         setTimeout(() => {
