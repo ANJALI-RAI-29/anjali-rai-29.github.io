@@ -1321,3 +1321,42 @@ body.light-mode #sendChatBtn {
     background: rgba(0,0,0,0.05);
     color: #0f172a !important;
 }
+/* ==========================================================================
+   10. DAMRU 3D INTERACTIVE INTERFACE ROTATION STYLES
+   ========================================================================== */
+.damru-3d-viewer {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    cursor: grab; /* Haath ka panja dikhega pakadne ke liye */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.damru-3d-viewer:active {
+    cursor: grabbing; /* Pakadte hi mutthi band hone ka icon aayega */
+}
+
+.damru-3d-viewer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none; /* Isse default browser browser ghost drag nahi hoga */
+}
+
+.drag-hint {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: monospace;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+body.light-mode .drag-hint {
+    color: rgba(0, 0, 0, 0.5);
+}
