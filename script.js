@@ -192,15 +192,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Bot Logic Routing
         let reply = "[Bot]: System rules not matched. Try typing 'skills', 'projects', or 'contact'.";
         
-                if (userText.includes("skill") || userText.includes("tech") || userText.includes("know")) {
-            reply = "[Bot]: Core Competencies: C programming, HTML, CSS, JavaScript. Currently building systems in Cloud, AI, and Machine Learning!";
+               if (userText.includes("skill") || userText.includes("tech") || userText.includes("know")) {
+            reply = "[Bot]: I am proficient in C programming, HTML, CSS, and JavaScript. Currently, I'm highly focused on learning modern domains like Cloud Computing, AI, and Machine Learning! 🚀";
         } else if (userText.includes("project") || userText.includes("work") || userText.includes("built")) {
-            reply = "[Bot]: Featured Projects: 1. Smart Gym (Mechanical to Electrical Energy Conversion) 2. DAMRU Engine Web Infrastructure.";
+            reply = "[Bot]: I've built some exciting projects! 🌟 1. A Smart Gym model focusing on sustainable energy conversion. 2. This custom DAMRU portfolio platform. Scroll down to check them out!";
         } else if (userText.includes("contact") || userText.includes("email") || userText.includes("social")) {
-            reply = "[Bot]: Routing Core... You can navigate to the Contact Section below or connect directly via GitHub/LinkedIn!";
+            reply = "[Bot]: I'd love to connect with you! Please scroll down to the Contact Section at the bottom, or feel free to reach out directly via my GitHub or LinkedIn profiles. ⚡";
         } else if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey")) {
-            reply = "[Bot]: Hello human! Welcome to the DAMRU Core Interface. How can I assist your extraction pipeline today?";
+            reply = "[Bot]: Hey there! Welcome to my portfolio. 😊 I'm really glad you're here. Type 'skills' or 'projects' to learn more about my journey!";
         }
+
 
         // Bot ka reply generate karna thode delay ke sath
         setTimeout(() => {
