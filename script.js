@@ -173,7 +173,9 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("theme", theme);
     });
 });
-// DAMRU CHAT BOT INTELLIGENCE ENGINE
+// ==========================================================================
+// 8. DAMRU SMART CONVERSATIONAL CHAT BOT ENGINE
+// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const chatInput = document.getElementById("chatInput");
     const sendChatBtn = document.getElementById("sendChatBtn");
@@ -182,31 +184,54 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!chatInput || !sendChatBtn || !chatBody) return;
 
     const triggerBotResponse = () => {
-        const userText = chatInput.value.trim().toLowerCase();
+        const rawInput = chatInput.value.trim();
+        const userText = rawInput.toLowerCase();
         if (userText === "") return;
 
-        // User ka message display karna
-        chatBody.innerHTML += `<p style="color: #94a3b8;">[You]: ${chatInput.value}</p>`;
+        // User ka message immediate render karna
+        chatBody.innerHTML += `<p style="color: #94a3b8; margin: 4px 0;">[You]: ${rawInput}</p>`;
         chatInput.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
 
-        // Bot Logic Routing
-        let reply = "[Bot]: System rules not matched. Try typing 'skills', 'projects', or 'contact'.";
+        let reply = "";
+
+        // 1. CASUAL GREETINGS (Friendly & Welcoming)
+        if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey") || userText.includes("hii")) {
+            reply = "Hi! How can I help you today? 😊 You can ask me about my skills, projects, or how to contact me!";
+        } 
+        else if (userText.includes("whats up") || userText.includes("what sup") || userText.includes("sup") || userText.includes("how are you")) {
+            reply = "All good here! 😎 Just hanging out in the digital world and showcasing some cool work. How's everything on your end?";
+        }
         
-               if (userText.includes("skill") || userText.includes("tech") || userText.includes("know")) {
-            reply = "[Bot]: I am proficient in C programming, HTML, CSS, and JavaScript. Currently, I'm highly focused on learning modern domains like Cloud Computing, AI, and Machine Learning! 🚀";
-        } else if (userText.includes("project") || userText.includes("work") || userText.includes("built")) {
-            reply = "[Bot]: I've built some exciting projects! 🌟 1. A Smart Gym model focusing on sustainable energy conversion. 2. This custom DAMRU portfolio platform. Scroll down to check them out!";
-        } else if (userText.includes("contact") || userText.includes("email") || userText.includes("social")) {
-            reply = "[Bot]: I'd love to connect with you! Please scroll down to the Contact Section at the bottom, or feel free to reach out directly via my GitHub or LinkedIn profiles. ⚡";
-        } else if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey")) {
-            reply = "[Bot]: Hey there! Welcome to my portfolio. 😊 I'm really glad you're here. Type 'skills' or 'projects' to learn more about my journey!";
+        // 2. TECH & SKILLS KEYWORDS
+        else if (userText.includes("skill") || userText.includes("tech") || userText.includes("know") || userText.includes("code")) {
+            reply = "I work with C programming, HTML, CSS, and JavaScript. Currently, I'm diving deep into advanced domains like Cloud Computing, AI, and Machine Learning! 🚀";
+        } 
+        
+        // 3. PROJECTS & WORK KEYWORDS
+        else if (userText.includes("project") || userText.includes("work") || userText.includes("built") || userText.includes("website")) {
+            reply = "I love building things! 🌟 Right now, my top features are: 1. A Sustainable Smart Gym concept (converting physical energy to electricity) and 2. This dynamic portfolio interface. Scroll down to see them live!";
+        } 
+        
+        // 4. CONTACT & SOCIALS KEYWORDS
+        else if (userText.includes("contact") || userText.includes("email") || userText.includes("linkedin") || userText.includes("github")) {
+            reply = "Let's connect! ⚡ You can find all my official handles in the Contact Section at the absolute bottom of this page. Let's build something cool together!";
+        } 
+        
+        // 5. COMPLIMENTS / SMALL TALK
+        else if (userText.includes("cool") || userText.includes("nice") || userText.includes("awesome") || userText.includes("great") || userText.includes("mst")) {
+            reply = "Haha, thank you so much! That means a lot coming from you. 🙌 Feel free to look around!";
+        } 
+        
+        // 6. POLITE APOLOGY FALLBACK (Pyara & Sweet Out-of-Topic Guard)
+        else {
+            reply = "I'm so sorry, I don't have information regarding this. 🐾 I am just a small custom chatbot built to guide you through this portfolio. Try typing 'skills' or 'projects' to see what I can show you! ✨";
         }
 
-
-        // Bot ka reply generate karna thode delay ke sath
+        // Natural dynamic delay simulation (400ms) for professional delivery
         setTimeout(() => {
-            chatBody.innerHTML += `<p class="bot-msg" style="color: #d6a84f;">${reply}</p>`;
-            chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll down
+            chatBody.innerHTML += `<p class="bot-msg" style="color: #d6a84f; margin: 4px 0;">[Bot]: ${reply}</p>`;
+            chatBody.scrollTop = chatBody.scrollHeight;
         }, 400);
     };
 
