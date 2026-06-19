@@ -194,43 +194,64 @@ document.addEventListener("DOMContentLoaded", () => {
         chatBody.scrollTop = chatBody.scrollHeight;
 
         let reply = "";
-        // 1. CASUAL GREETINGS (Friendly & Welcoming)
-        if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey") || userText.includes("hii")) {
+                // 1. CASUAL GREETINGS (Friendly & Welcoming)
+        if (userText.includes("hello") || userText.includes("hi") || userText.includes("hey") || userText.includes("hii") || userText.includes("yo")) {
             reply = "Hi! How can I help you today? 😊 You can ask me about my skills, projects, or how to contact me!";
         } 
-        else if (userText.includes("whats up") || userText.includes("what sup") || userText.includes("sup") || userText.includes("how are you")) {
-            reply = "All good here! 😎 Just hanging out in the digital world and showcasing some cool work. How's everything on your end?";
+        else if (userText.includes("whats up") || userText.includes("what sup") || userText.includes("sup") || userText.includes("how are you") || userText.includes("kya haal")) {
+            reply = "All good here! 😎 Just hanging out in the digital universe and showcasing some cool work. How's everything on your end?";
         }
         
-        // 1b. IDENTITY & INTRODUCTION KEYWORDS (Fix for your query!)
-        else if (userText.includes("who are you") || userText.includes("intro") || userText.includes("yourself") || userText.includes("your name")) {
+        // 2. IDENTITY & INTRODUCTION KEYWORDS (Handles "Tell about yourself", "who are you", etc.)
+        else if (userText.includes("yourself") || userText.includes("who") || userText.includes("intro") || userText.includes("about") || userText.includes("name")) {
             reply = "I am the DAMRU Chat Bot! 🤖 I was built from scratch using vanilla JavaScript to act as a friendly virtual guide for this portfolio. I can show you my creator's skills, tech stack, and top engineering projects!";
         }
         
-        // 2. TECH & SKILLS KEYWORDS
+        // 3. DAILY CONVERSATION & CHIT-CHAT (New Dynamic Layer!)
+        else if (userText.includes("bye") || userText.includes("goodnight") || userText.includes("tc") || userText.includes("take care")) {
+            reply = "Goodbye! 👋 Thank you so much for stopping by and chatting with me. Have a wonderful day ahead!";
+        }
+        else if (userText.includes("thank") || userText.includes("welcome") || userText.includes("ty") || userText.includes("shukriya")) {
+            reply = "You're most welcome! Always happy to help. Let me know if you want to explore my skills or projects next! ✨";
+        }
+        else if (userText.includes("btech") || userText.includes("college") || userText.includes("study") || userText.includes("thapar") || userText.includes("engineering")) {
+            reply = "Engineering life is all about continuous building and innovation! 🚀 Balancing core mechanics with modern software frameworks is a great journey. Type 'skills' to see what I've mastered so far!";
+        }
+        else if (userText.includes("motivation") || userText.includes("inspire") || userText.includes("bored")) {
+            reply = "Consistency beats talent every single day! 💪 Keep learning, keep practicing code, and stay curious. Want to look at some of my exciting projects for inspiration?";
+        }
+        else if (userText.includes("eat") || userText.includes("food") || userText.includes("khana") || userText.includes("lunch") || userText.includes("dinner")) {
+            reply = "Haha, as a digital chatbot, I only consume data and clean code arrays! 💻 But I hope you're having something delicious!";
+        }
+        else if (userText.includes("ai") || userText.includes("machine learning") || userText.includes("cloud")) {
+            reply = "Artificial Intelligence and Cloud Infrastructure are changing the world! 🌌 I am highly passionate about these domains and constantly building smart automation architectures. Check out my projects block!";
+        }
+        
+        // 4. TECH & SKILLS KEYWORDS
         else if (userText.includes("skill") || userText.includes("tech") || userText.includes("know") || userText.includes("code")) {
             reply = "I work with C programming, HTML, CSS, and JavaScript. Currently, I'm diving deep into advanced domains like Cloud Computing, AI, and Machine Learning! 🚀";
         } 
         
-        // 3. PROJECTS & WORK KEYWORDS
+        // 5. PROJECTS & WORK KEYWORDS
         else if (userText.includes("project") || userText.includes("work") || userText.includes("built") || userText.includes("website")) {
             reply = "I love building things! 🌟 Right now, my top features are: 1. A Sustainable Smart Gym concept (converting physical energy to electricity) and 2. This dynamic portfolio interface. Scroll down to see them live!";
         } 
         
-        // 4. CONTACT & SOCIALS KEYWORDS
+        // 6. CONTACT & SOCIALS KEYWORDS
         else if (userText.includes("contact") || userText.includes("email") || userText.includes("linkedin") || userText.includes("github")) {
             reply = "Let's connect! ⚡ You can find all my official handles in the Contact Section at the absolute bottom of this page. Let's build something cool together!";
         } 
         
-        // 5. COMPLIMENTS / SMALL TALK
-        else if (userText.includes("cool") || userText.includes("nice") || userText.includes("awesome") || userText.includes("great") || userText.includes("mst")) {
-            reply = "Haha, thank you so much! That means a lot coming from you. 🙌 Feel free to look around!";
+        // 7. COMPLIMENTS / SMALL TALK
+        else if (userText.includes("cool") || userText.includes("nice") || userText.includes("awesome") || userText.includes("great") || userText.includes("mst") || userText.includes("love")) {
+            reply = "Haha, thank you so much! That means a lot coming from you. 🙌 Feel free to look around and test everything!";
         } 
         
-        // 6. POLITE APOLOGY FALLBACK (Pyara & Sweet Out-of-Topic Guard)
+        // 8. POLITE APOLOGY FALLBACK (Pyara & Sweet Out-of-Topic Guard)
         else {
             reply = "I'm so sorry, I don't have information regarding this. 🐾 I am just a small custom chatbot built to guide you through this portfolio. Try typing 'skills' or 'projects' to see what I can show you! ✨";
         }
+
 
 
         // Natural dynamic delay simulation (400ms) for professional delivery
