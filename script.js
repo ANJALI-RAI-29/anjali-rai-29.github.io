@@ -267,13 +267,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!viewer || !frameImg) return;
 
-        // Fully calibrated sequential order based on your exact GitHub repository file names
+            // Fully calibrated sequential order based on your exact GitHub repository file names
     const frames = [
-        "1000431814-removebg-preview.png.png", // Frame 1 (Double .png extension match)
-        "damru2.png",                           // Frame 2
-        "damru-transparent.png",                // Frame 3 (Exact name from your repo)
-        "damru3.png"                            // Frame 4
+        "1000431814-removebg-preview.png", // Frame 1: Exact root file name match
+        "damru2.png",                       // Frame 2
+        "damru-transparent.png",            // Frame 3
+        "damru3.png"                        // Frame 4
     ];
+
 
 
     let isDragging = false;
