@@ -259,13 +259,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 // ==========================================================================
-// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (PRO LAYER-SWITCH ENGINE)
+// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (PRO AUTO-SPIN INTEGRATION)
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const viewer = document.getElementById("damruViewer");
     if (!viewer) return;
 
-    // DOM se saare elements ko extract kar lete hain
     const frames = viewer.querySelectorAll(".damru-frame");
     const totalFrames = frames.length;
     if (totalFrames === 0) return;
@@ -274,12 +273,50 @@ document.addEventListener("DOMContentLoaded", () => {
     let startX = 0;
     let currentFrameIndex = 0;
     
-    // Slow aur custom cinematic flow control ke liye optimized pixel gaps
+    // Manual Drag Settings
     const pixelsPerFrame = 55; 
 
+    // --- AUTO ROTATION SYSTEM CORE VARIABLES ---
+    let autoRotationInterval = null;
+    const autoSpinSpeed = 180; // Speed Calibrator: Har 180ms me frame badlega (Lower = Faster spin)
+    const autoSpinDelay = 2000; // Delay Calibrator: Touch chorhne ke 2 seconds baad wapas auto-spin shuru hoga
+    let resumeTimeout = null;
+
+    // Core Frame Switch Function
+    const switchFrame = (newIndex) => {
+        frames[currentFrameIndex].classList.remove("active");
+        currentFrameIndex = (newIndex + totalFrames) % totalFrames;
+        frames[currentFrameIndex].classList.add("active");
+    };
+
+    // 🔄 Infinite Automation Loop Engine
+    const startAutoRotation = () => {
+        if (autoRotationInterval) return; // Prevent multiple overlay loops
+        autoRotationInterval = setInterval(() => {
+            // Forward direction incremental mapping loop
+            let nextFrame = (currentFrameIndex + 1) % totalFrames;
+            switchFrame(nextFrame);
+        }, autoSpinSpeed);
+    };
+
+    const stopAutoRotation = () => {
+        if (autoRotationInterval) {
+            clearInterval(autoRotationInterval);
+            autoRotationInterval = null;
+        }
+    };
+
+    // Bootstrap initial automated cycle animation instantly on page load
+    startAutoRotation();
+
+    // --- INTERACTIVE DRAG HANDLERS ---
     const startInteraction = (clientX) => {
         isDragging = true;
         startX = clientX;
+        
+        stopAutoRotation(); // Touch karte hi auto-spin instant band ho jaye
+        clearTimeout(resumeTimeout); // Purane timing triggers ko reset karein
+
         const container = viewer.querySelector(".damru-frames-container");
         if (container) container.style.transform = "scale(1.02)";
     };
@@ -291,15 +328,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let frameOffset = Math.floor(deltaX / pixelsPerFrame);
         
         if (frameOffset !== 0) {
-            // Purani active image se class hatate hain
-            frames[currentFrameIndex].classList.remove("active");
-
-            // Naya accurate sequence calculation
-            currentFrameIndex = (currentFrameIndex - frameOffset + totalFrames) % totalFrames;
-            
-            // Nayi image par active class add karte hain (Mili-second blending triggers here)
-            frames[currentFrameIndex].classList.add("active");
-            
+            let nextIndex = currentFrameIndex - frameOffset;
+            switchFrame(nextIndex);
             startX = clientX; 
         }
     };
@@ -307,19 +337,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const endInteraction = () => {
         if (!isDragging) return;
         isDragging = false;
+        
         const container = viewer.querySelector(".damru-frames-container");
         if (container) container.style.transform = "scale(1)";
+
+        // User jaise hi finger hatae, 2 seconds ke rest interval ke baad wapas auto-spin toggle ho jaye
+        resumeTimeout = setTimeout(() => {
+            startAutoRotation();
+        }, autoSpinDelay);
     };
 
-    // --- SYSTEMS LISTENERS (DESKTOP + MOBILE) ---
+    // --- DESKTOP ENGINE LISTENERS ---
     viewer.addEventListener("mousedown", (e) => startInteraction(e.clientX));
     window.addEventListener("mousemove", (e) => moveInteraction(e.clientX));
     window.addEventListener("mouseup", endInteraction);
 
+    // --- MOBILE INTERFACE LISTENERS ---
     viewer.addEventListener("touchstart", (e) => startInteraction(e.touches[0].clientX), { passive: true });
     viewer.addEventListener("touchmove", (e) => {
         if (isDragging) {
-            if (e.cancelable) e.preventDefault(); // Device screen lock physics
+            if (e.cancelable) e.preventDefault(); // Stop default web layout bounce physics
             moveInteraction(e.touches[0].clientX);
         }
     }, { passive: false });
