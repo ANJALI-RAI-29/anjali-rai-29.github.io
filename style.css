@@ -1321,30 +1321,44 @@ body.light-mode #sendChatBtn {
     background: rgba(0,0,0,0.05);
     color: #0f172a !important;
 }
+
 /* ==========================================================================
-   10. DAMRU 3D INTERACTIVE INTERFACE ROTATION STYLES
+   10. PRO LEVEL DAMRU OPACITY BLENDING STYLES
    ========================================================================== */
 .damru-3d-viewer {
     position: relative;
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
-    cursor: grab; /* Haath ka panja dikhega pakadne ke liye */
+    cursor: grab;
     user-select: none;
     -webkit-user-select: none;
 }
-
 .damru-3d-viewer:active {
-    cursor: grabbing; /* Pakadte hi mutthi band hone ka icon aayega */
+    cursor: grabbing;
 }
-
-.damru-3d-viewer img {
+.damru-frames-container {
+    position: relative;
+    width: 100%;
+    display: grid; /* Layers ko center stack karne ke liye grid layout */
+    grid-template-columns: 1fr;
+}
+.damru-frame {
+    grid-column: 1;
+    grid-row: 1;
     width: 100%;
     height: auto;
     display: block;
-    pointer-events: none; /* Isse default browser browser ghost drag nahi hoga */
+    pointer-events: none;
+    opacity: 0; /* Default me saari hidden rahengi */
+    visibility: hidden;
+    will-change: opacity; /* GPU ko pehle se optimize karne ke liye alert data */
+    transition: opacity 0.05s ease-out; /* Super fast smooth transition blending */
 }
-
+.damru-frame.active {
+    opacity: 1; /* Jo frame active hoga wo instantly visible ho jayega */
+    visibility: visible;
+}
 .drag-hint {
     position: absolute;
     bottom: -25px;
@@ -1356,14 +1370,6 @@ body.light-mode #sendChatBtn {
     letter-spacing: 1px;
     white-space: nowrap;
 }
-
 body.light-mode .drag-hint {
     color: rgba(0, 0, 0, 0.5);
-}
-.damru-3d-viewer img {
-    width: 100%;
-    height: auto;
-    display: block;
-    pointer-events: none;
-    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
