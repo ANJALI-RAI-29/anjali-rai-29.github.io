@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 // ==========================================================================
-// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (FINAL 4-FRAME LINEUP)
+// 9. DAMRU INTERACTIVE INTERFACE ROTATION ENGINE (SMOOTH MATRIX MODEL)
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const viewer = document.getElementById("damruViewer");
@@ -267,25 +267,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!viewer || !frameImg) return;
 
-            // Fully calibrated sequential order based on your exact GitHub repository file names
     const frames = [
-        "1000431814-removebg-preview.png", // Frame 1: Exact root file name match
-        "damru2.png",                       // Frame 2
-        "damru-transparent.png",            // Frame 3
-        "damru3.png"                        // Frame 4
+        "1000431814-removebg-preview.png",
+        "damru2.png",
+        "damru-transparent.png",
+        "damru3.png"
     ];
-
-
 
     let isDragging = false;
     let startX = 0;
     let currentFrameIndex = 0;
     const totalFrames = frames.length;
-    const pixelsPerFrame = 25; // Drag sensitivity scale (Lower = Faster state response)
+    
+    // Smoothness Optimizer: pixelsPerFrame ko 40 kiya taaki swipe zyada organic lage
+    const pixelsPerFrame = 40; 
 
     const startInteraction = (clientX) => {
         isDragging = true;
         startX = clientX;
+        if(frameImg) frameImg.style.transform = "scale(1.02)"; // Halk sa lift effect on touch
     };
 
     const moveInteraction = (clientX) => {
@@ -295,26 +295,34 @@ document.addEventListener("DOMContentLoaded", () => {
         let frameOffset = Math.floor(deltaX / pixelsPerFrame);
         
         if (frameOffset !== 0) {
-            // Update cycle indexing with backward and forward dynamic boundary tracking
+            // Smooth reverse tracking direction logic
             currentFrameIndex = (currentFrameIndex - frameOffset + totalFrames) % totalFrames;
-            frameImg.src = frames[currentFrameIndex];
-            startX = clientX; // Anchor marker reset for fluid continuum flow
+            
+            // Pre-loading fallback to avoid white flickers
+            const imgCache = new Image();
+            imgCache.src = frames[currentFrameIndex];
+            imgCache.onload = () => {
+                frameImg.src = frames[currentFrameIndex];
+            };
+
+            startX = clientX; 
         }
     };
 
     const endInteraction = () => {
         isDragging = false;
+        if(frameImg) frameImg.style.transform = "scale(1)"; // Reset lift effect
     };
 
-    // --- DESKTOP TRACK LISTENERS ---
+    // Desktop
     viewer.addEventListener("mousedown", (e) => startInteraction(e.clientX));
     window.addEventListener("mousemove", (e) => moveInteraction(e.clientX));
     window.addEventListener("mouseup", endInteraction);
 
-    // --- SMART PHONE INTERFACE LISTENERS ---
+    // Mobile Phone
     viewer.addEventListener("touchstart", (e) => startInteraction(e.touches[0].clientX));
     viewer.addEventListener("touchmove", (e) => {
-        if (isDragging) e.preventDefault(); // Disables structural background scroll physics while dragging
+        if (isDragging) e.preventDefault(); 
         moveInteraction(e.touches[0].clientX);
     }, { passive: false });
     viewer.addEventListener("touchend", endInteraction);
